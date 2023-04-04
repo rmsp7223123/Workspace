@@ -19,7 +19,7 @@ public class Test02_DiceGame {
 			System.out.println("사용자의 수 : " + userNum);
 			System.out.println("컴퓨터가 주사위를 굴립니다. (진행 ENTER)");
 			sc.nextLine();
-			int comNum = (int) (Math.random() * 6) + 1; // (1~6)
+			int comNum = (int) (Math.random() * 4) + 1; // (1~6)
 			System.out.println("컴퓨터의 수 : " + comNum);
 			if (userNum > comNum) {
 				System.out.println("사용자의 수 : " + userNum + " 컴퓨터의 수 : " + comNum + " 사용자가 이겼습니다.");
