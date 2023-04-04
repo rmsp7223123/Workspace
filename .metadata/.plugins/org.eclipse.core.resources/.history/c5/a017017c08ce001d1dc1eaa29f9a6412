@@ -1,0 +1,11 @@
+package pack08_Casting;
+
+public class Ex02_Casting {
+	public static void main(String[] args) {
+		// 문자열 + 어떤 값 = 문자열  <== 문자열 결합의 규칙
+		String sum = "12" + 34;
+		System.out.println(sum);
+		String sum2 = ""+1234;
+		System.out.println(sum2);
+	}
+}

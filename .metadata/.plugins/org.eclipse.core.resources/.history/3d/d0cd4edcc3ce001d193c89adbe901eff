@@ -1,0 +1,23 @@
+
+public class Test_06 {
+	public static void main(String[] args) {
+		int lanScore, mathScore, engScore, sciScore, athScore;
+		lanScore = 1;
+		mathScore = 2;
+		engScore = 3;
+		sciScore = 4;
+		athScore = 5;
+		System.out.println(lanScore);
+		System.out.println(mathScore);
+		System.out.println(engScore);
+		System.out.println(sciScore);
+		System.out.println(athScore);
+		
+		// 형변환(Casting) : 서로 다른타입의 변수를 변환시켜 사용함.
+		// ex) int <-> double , String <-> int
+		int iValue = 10;
+		double dValue = iValue + 0.5 ; // 자동 형변환(UpCasting)
+		System.out.println("10" + iValue);
+		System.out.println("10.5" + dValue);
+	}
+}

@@ -1,0 +1,20 @@
+package pack04_char;
+
+public class Ex01_Char {
+	public static void main(String[] args) {
+		// 문자 데이터 타입 : char
+		// 하나의 글자만 저장 : 유니코드
+		// 변수에 값을 할당(대입) 할 때는 작은 따옴표를 사용
+		// 작은 따옴표 == 싱글 코테이션 == '
+		char cha1 = 'a';
+		System.out.println(cha1);
+		char cha2 = 'B';
+		char cha3 = '★';
+		char cha4 = 'ㅁ';
+		System.out.println(cha1);
+		//char cha5 = ''; < 아무것도 안넣는것은 X
+		//char cha6 = 'ab'; < 문자가 아닌 문자열은 X
+		char cha7 = 65; // 유니코드 진수형태로 문자와 특수문자 숫자를 표현할 수 있는 코드
+	}
+
+}

@@ -1,0 +1,16 @@
+package pack09_Scanner;
+
+import java.util.Scanner;
+
+public class Ex02_Scanner {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String data1 = sc.nextLine();
+		String data2 = sc.nextLine();
+		int A = Integer.parseInt(data1)+1;
+		int A = Integer.parseInt(data2)+2;
+		System.out.println(A);
+		
+	}
+
+}

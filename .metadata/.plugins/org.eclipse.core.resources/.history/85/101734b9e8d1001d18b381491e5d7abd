@@ -1,0 +1,8 @@
+
+public class Ex05_Operator {
+	public static void main(String[] args) {
+		int result = 0;
+		int result1 = result + 10;
+		System.out.println(result1);
+	}
+}

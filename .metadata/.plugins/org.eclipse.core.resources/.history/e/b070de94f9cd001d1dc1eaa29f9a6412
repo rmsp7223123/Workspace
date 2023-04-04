@@ -1,0 +1,9 @@
+package pack06_Bool;
+
+public class Ex01_Bool {
+	public static void main(String[] args) {
+		boolean t = true;
+		boolean f = false;
+		System.out.println(t);
+	}
+}
