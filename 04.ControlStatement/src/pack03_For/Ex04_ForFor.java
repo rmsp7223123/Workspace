@@ -29,10 +29,11 @@ public class Ex04_ForFor {
 		Scanner sc = new Scanner(System.in);
 		sc.nextLine();
 		
-		for (int a = 1; a <= 9; a++) {
-			for (int b = 2; b<= 9; b++) {
-				System.out.println(a * b);
+		for (int a = 2; a <= 9; a++) {
+			for (int b = 1; b<= 9; b++) {
+				System.out.print(a + " X " + b + " = " + (a * b) +" ");
 			}
+			System.out.println();
 		}
 		
 	}
