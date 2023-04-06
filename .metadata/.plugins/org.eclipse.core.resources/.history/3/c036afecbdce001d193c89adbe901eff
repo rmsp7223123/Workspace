@@ -1,7 +1,0 @@
-
-public class Test_01 {
-	public static void main(String[] args) {
-		// ; <= 세미콜론, : <= 콜론
-		System.out.println("asd");
-	}
-}
