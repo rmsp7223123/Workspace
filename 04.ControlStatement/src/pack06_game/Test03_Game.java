@@ -36,7 +36,7 @@ public class Test03_Game {
 				int sum;
 				sum = lan + mat + eng;
 				int avg;
-				avg= (double)sum / 3;
+				avg= sum / 3;
 				System.out.println("총점 : " + sum);
 				System.out.println("평균 : " + avg);
 				break;
