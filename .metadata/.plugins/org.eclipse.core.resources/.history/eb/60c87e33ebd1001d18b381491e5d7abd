@@ -1,8 +1,0 @@
-
-public class Ex06_Operator {
-	public static void main(String[] args) {
-		int num = 10;
-		String result = num == 10 ? "맞다" : "틀리다"; 
-			System.out.println(result);
-	}
-}
