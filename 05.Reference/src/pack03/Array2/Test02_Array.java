@@ -1,5 +1,6 @@
 package pack03.Array2;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ public class Test02_Array {
 		int random = new Random().nextInt(level);
 		
 		gameArray[random] = 1; // 랜덤하게 한군데만 바뀜
-		
+		System.out.println(Arrays.toString(gameArray));
 		while(true) {
 			System.out.println("1부터 " + gameArray.length + "까지의 값을 입력");
 			for (int i = 0; i < gameResults.length; i++) {
