@@ -10,7 +10,6 @@ public class Ex04_Array {
 		int[] mbtiResult = new int[4];
 		for (;;) {
 			System.out.println("asdadsadasdasdad");
-			if ()
 			mbtiResult[0] = Integer.parseInt(sc.nextLine());
 		}
 	}
