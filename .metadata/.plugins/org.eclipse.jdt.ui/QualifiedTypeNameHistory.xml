@@ -15,5 +15,13 @@
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="pack01_class.Ex01_Student"/>
+    <fullyQualifiedTypeName name="pack02_field.Ex01_car"/>
+    <fullyQualifiedTypeName name="pack02_field.Ex02_Field"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="pack03_constructor.Ex02_Korean"/>
+    <fullyQualifiedTypeName name="pack03_constructor.Ex03_Car"/>
+    <fullyQualifiedTypeName name="pack03_constructor.Test01_Member"/>
+    <fullyQualifiedTypeName name="pack03_constructor.Test01_MemberDTo"/>
 </qualifiedTypeNameHistroy>
