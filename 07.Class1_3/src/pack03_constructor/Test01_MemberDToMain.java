@@ -7,6 +7,5 @@ public class Test01_MemberDToMain {
 		System.out.println("ID : " + ec.id);
 		System.out.println("PW : " + ec.pw);
 		System.out.println("AGE : " + ec.age);
-		System.out.println(2000+ 2000+1500+500+500+600+300+300+100+100+50);
 	}
 }
