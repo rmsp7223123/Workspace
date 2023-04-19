@@ -5,7 +5,4 @@ public class ProductDAO {
 		System.out.println("번호 : " + dto.num);
 		System.out.println("상품명 : " + dto.name);
 	}
-	void input() {
-		System.out.println("상품 추가하기");
-	}
 }

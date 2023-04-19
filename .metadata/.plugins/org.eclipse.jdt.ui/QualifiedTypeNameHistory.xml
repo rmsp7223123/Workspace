@@ -6,7 +6,6 @@
     <fullyQualifiedTypeName name="java.text.ParseException"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="java.lang.Boolean"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
@@ -25,7 +24,6 @@
     <fullyQualifiedTypeName name="pack01_base.Ex01_Car"/>
     <fullyQualifiedTypeName name="pack01_base.Ex02_Calculator"/>
     <fullyQualifiedTypeName name="pack01_base.Ex02_CalculatorMain"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="pack01_base.Ex03_Computer"/>
     <fullyQualifiedTypeName name="pack01_base.Ex04_Car"/>
     <fullyQualifiedTypeName name="pack01_base.Ex06_Method"/>
@@ -33,6 +31,15 @@
     <fullyQualifiedTypeName name="pack02_static.Ex01_Static"/>
     <fullyQualifiedTypeName name="pack02_static.Ex02_Calculator"/>
     <fullyQualifiedTypeName name="pack02_static.Test01_Method"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="pack02_static.Test02_Method"/>
+    <fullyQualifiedTypeName name="pack03_oop1.ProductMain"/>
+    <fullyQualifiedTypeName name="pack03_oop1.ProductDTO"/>
+    <fullyQualifiedTypeName name="pack04_oop2.Student"/>
+    <fullyQualifiedTypeName name="pack04_oop2.StudentDAO"/>
+    <fullyQualifiedTypeName name="pack04_oop2.StudentDTO"/>
+    <fullyQualifiedTypeName name="test.Japangi"/>
+    <fullyQualifiedTypeName name="test.JapangiDTO"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>
