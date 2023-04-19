@@ -17,9 +17,7 @@ public class JapangiMain {
 		dto.setBevCount(2, 1);
 
 		JapangiDAO dao = new JapangiDAO();
-		dao.display(dto);
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
-
+		int count = 3;
 		String id;
 		String pw;
 		int inputNum;
@@ -27,7 +25,6 @@ public class JapangiMain {
 		int selNum1;
 		int inputMoney;
 		int totalMoney = 0;
-		int count = 3;
 		int chanMoney10, chanMoney50, chanMoney100, chanMoney500, chanMoney1000 = 0;
 		int[] changeMoney = new int[5];
 		while (true) {
@@ -48,7 +45,7 @@ public class JapangiMain {
 					pw = sc.nextLine();
 					if (id.equals("master") && pw.equals("admin")) {
 						System.out.println("관리자 기능에 접속합니다.");
-						dao.display(dto);
+						dao.display(dto, count);
 						while (true) {
 							System.out.println("원하는 기능을 선택해주세요");
 							System.out.println("1번 음료추가");
@@ -101,9 +98,7 @@ public class JapangiMain {
 				}
 			} else if (inputNum == 2) {
 				System.out.println("음료수 구매를 선택하셨습니다");
-				for (int i = 1; i <= count; i++) {
-					System.out.println(i + "번" + dto.bev[i - 1] + " " + dto.bevCost[i - 1] + "원 " +dto.bevCount[i-1]+ "개");
-				}
+				dao.display(dto, count);
 				System.out.println("9번을 입력시 음료수 구매로 넘어갑니다.");
 				System.out.println("0번을 입력시 초기화면으로 돌아갑니다.");
 				while (true) {
@@ -131,9 +126,7 @@ public class JapangiMain {
 				System.out.println("원하시는 음료수를 선택해주세요");
 				System.out.println("0번을 입력시 잔돈을 반환 후 초기화면으로 돌아갑니다.");
 				while (true) {
-					for (int i = 1; i <= count; i++) {
-						System.out.println(i + "번" + dto.bev[i - 1] + " " + dto.bevCost[i - 1] + "원 " +dto.bevCount[i-1] + "개");
-					}
+					dao.display(dto, count);
 					selNum1 = Integer.parseInt(sc.nextLine());
 					if (selNum1 == 0) {
 						chanMoney1000 = totalMoney / 1000;

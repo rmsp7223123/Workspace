@@ -1,10 +1,10 @@
 package test;
 
 public class JapangiDAO {
-	void display(JapangiDTO dto) {
-		System.out.println(dto.bev[0] +" "+ dto.bevCost[0]+ "원 " + dto.bevCount[0]+ "개");
-		System.out.println(dto.bev[1] +" "+ dto.bevCost[1]+ "원 " + dto.bevCount[1]+ "개");
-		System.out.println(dto.bev[2] +" "+ dto.bevCost[2]+ "원 " + dto.bevCount[2]+ "개");
+	void display(JapangiDTO dto, int count) {
+		for (int i = 1; i <= count; i++) {
+			System.out.println(i + "번" + dto.bev[i - 1] + " " + dto.bevCost[i - 1] + "원 " +dto.bevCount[i-1]+ "개");
+		}
 	}
 
 }
