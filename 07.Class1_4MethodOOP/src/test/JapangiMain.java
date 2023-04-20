@@ -25,7 +25,7 @@ public class JapangiMain {
 		String addBev;
 		int manSelNum1;
 		int manSelNum2;
-		int manSelNum3;
+		int corNum1;
 		int manAddNum1;
 		int selNum1;
 		int inputMoney;
@@ -87,57 +87,46 @@ public class JapangiMain {
 										dto.setBevCost(manAddNum1 - 1, manSelNum2);
 										System.out.println("음료추가가 완료되었습니다.");
 										continue;
-									} else  {
+									} else {
 										System.out.println("음료 추가가 불가능합니다. 다른 슬롯을 골라주세요.");
 										continue;
-									} 
+									}
 								}
-								// 몇번 슬롯에 어떻게?
-								// 빈슬롯부터 순서대로 쌓으려면 ?
-								// 원하는 슬롯에만 쌓으려면?
-//								addBev = sc.nextLine();
-//								dto.setBev(3, addBev);
-//								System.out.println("추가하려는 음료의 개수를 적어주세요");
-//								manSelNum1 = Integer.parseInt(sc.nextLine());
-//								dto.setBevCount(3, manSelNum1);
-//								System.out.println("추가하려는 음료의 가격을 적어주세요");
-//								manSelNum2 = Integer.parseInt(sc.nextLine());
-//								dto.setBevCost(3, manSelNum2);
-//								System.out.println("음료가 추가되었습니다.");
-//								count++;
+
 							} else if (manNum1 == 2) {
 								System.out.println("2번 음료수정을 고르셨습니다.");
 								dao.display(dto);
-								System.out.println("수정할 음료의 번호를 골라주세요.");
-								manSelNum3 = Integer.parseInt(sc.nextLine());
-								if (manSelNum3 == 1) {
-
-								} else if (manSelNum3 == 2) {
-
-								} else {
-
+								while(true) {
+									System.out.println("수정할 음료의 번호를 골라주세요.");
+									System.out.println("0번을 입력시 이전화면으로 돌아갑니다.");
+									corNum1 = Integer.parseInt(sc.nextLine());
+									if (corNum1 == 0) {
+										break;
+									}
+									if (corNum1 < 0 || corNum1 > 6) {
+										System.out.println("음료추가가 불가능합니다. 정상적인 슬롯을 골라주세요.");
+										continue;
+									}
+									if (dto.getBev()[corNum1 - 1] == null) {
+										System.out.println("비어있는 슬롯입니다.");
+										System.out.println("다른 슬롯을 선택해주세요.");
+										continue;
+									} else {
+										//추가하기
+									}
+									//추가하기
 								}
-								// 빈슬롯을 눌렀을때엔?
-								//
 							} else if (manNum1 == 3) {
 								System.out.println("3번 음료삭제를 고르셨습니다.");
-								// 음료리스트 나열
-								// 삭제할 음료수를 골라주세요
-								// ex 2번을 골랐다
-								// --> 2번 삭제후 3번을 2번으로 이동후 카운트--;
-								// dto.setBev(1, "환타");
-								// dto.setBevCost(1, 환타가격);
-								// 만약 4종류가 있는데 2번을 삭제했다면
-								// 3번을 2번으로 4번을 3번으로 for문을 써서 반복시킴
-								// for (int i = 입력받은 값; i< count; i++) {
-								// dto.setBev(i, dto.bev[i+1]);
-								// dto.setBevCost(i, dto.bevCost[i+1]);
-								// dto.setBevCount(i, dto.bevCount[i+1]);
-								// }
-								// dto.setBev(count, null);
-								// dto.setBevCost(count, 0);
-								// dto.setBevCount(count, 0);
-								// count--
+								dao.display(dto);
+								System.out.println("삭제할 음료수의 번호를 눌러주세요.");
+								//삭제할 음료수의 번호 입력(스캐너)
+								//입력받은 번호의 음료,개수,카운트 ==>null
+								//빈 슬롯을 선택시 빈슬롯입니다. 다른 음료를 선택해주세요
+								//0번을 입력시 이전화면으로 이동 
+								
+								
+								
 							} else if (manNum1 == 0) {
 								break;
 							} else {
