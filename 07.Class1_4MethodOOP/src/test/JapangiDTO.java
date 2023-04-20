@@ -1,9 +1,9 @@
 package test;
 
 public class JapangiDTO {
-	String[] bev = new String[6];
-	int[] bevCount = new int[6];
-	int[] bevCost = new int[6];
+	String[] bev = new String[6];//1   2
+	int[] bevCount = new int[6];//10  96
+	int[] bevCost = new int[6];//10000  54
 
 	
 	public String[] getBev() {

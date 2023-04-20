@@ -6,9 +6,9 @@ public class JapangiMain {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		JapangiDTO dto = new JapangiDTO();
-		dto.setBev(0,"콜라");
-		dto.setBev(1,"사이다");
-		dto.setBev(2,"환타");
+		dto.setBev(0, "콜라");
+		dto.setBev(1, "사이다");
+		dto.setBev(2, "환타");
 		dto.setBevCost(0, 800);
 		dto.setBevCost(1, 1000);
 		dto.setBevCost(2, 900);
@@ -17,11 +17,17 @@ public class JapangiMain {
 		dto.setBevCount(2, 1);
 
 		JapangiDAO dao = new JapangiDAO();
+		int seven = 7;
 		int count = 3;
 		String id;
 		String pw;
 		int inputNum;
 		int manNum1;
+		String addBev;
+		int manSelNum1;
+		int manSelNum2;
+		int manSelNum3;
+		int manAddNum1;
 		int selNum1;
 		int inputMoney;
 		int totalMoney = 0;
@@ -45,52 +51,96 @@ public class JapangiMain {
 					pw = sc.nextLine();
 					if (id.equals("master") && pw.equals("admin")) {
 						System.out.println("관리자 기능에 접속합니다.");
-						dao.display(dto, count);
+						dao.display(dto);
 						while (true) {
 							System.out.println("원하는 기능을 선택해주세요");
 							System.out.println("1번 음료추가");
 							System.out.println("2번 음료수정");
 							System.out.println("3번 음료삭제");
+							System.out.println("0번 초기화면으로 돌아가기");
 							manNum1 = Integer.parseInt(sc.nextLine());
 							if (manNum1 == 1) {
 								System.out.println("1번 음료추가를 고르셨습니다.");
 								System.out.println("최대 6종류의 음료를 보관할 수 있습니다.");
-								System.out.println("추가하려는 음료를 적어주세요.");
-								// scanner 받아와서
-								// dto.setBev(3, "스프라이트");
-								// 값 추가
-								// count ++;
-							if (manNum1 == 2) {
+								dao.display1(dto, seven);
+
+								System.out.println("추가하려는 빈 슬롯의 번호를 적어주세요.");
+								System.out.println("0번을 입력하시면 초기화면으로 돌아갑니다.");
+								manAddNum1 = Integer.parseInt(sc.nextLine());
+								while (true) {
+									if (dto.getBev()[manAddNum1 -1] == null) {
+										System.out.println("음료 추가 가능");
+										System.out.println("추가하실 음료의 이름을 입력해주세요.");
+										addBev = sc.nextLine();
+										dto.setBev(manAddNum1 - 1, addBev);
+										System.out.println("추가하신 음료의 개수를 입력해주세요.");
+										manSelNum1 = Integer.parseInt(sc.nextLine());
+										dto.setBevCount(manAddNum1 - 1, manSelNum1);
+										System.out.println("추가히신 음료의 가격을 입력해주세요.");
+										manSelNum2 = Integer.parseInt(sc.nextLine());
+										dto.setBevCost(manAddNum1 - 1, manSelNum2);
+										System.out.println("음료추가가 완료되었습니다.");
+										count++;
+										break;
+									} else {
+										System.out.println("음료 추가가 불가능합니다. 다른 슬롯을 골라주세요.");
+									}
+									continue;
+								}
+								// 몇번 슬롯에 어떻게?
+								// 빈슬롯부터 순서대로 쌓으려면 ?
+								// 원하는 슬롯에만 쌓으려면?
+//								addBev = sc.nextLine();
+//								dto.setBev(3, addBev);
+//								System.out.println("추가하려는 음료의 개수를 적어주세요");
+//								manSelNum1 = Integer.parseInt(sc.nextLine());
+//								dto.setBevCount(3, manSelNum1);
+//								System.out.println("추가하려는 음료의 가격을 적어주세요");
+//								manSelNum2 = Integer.parseInt(sc.nextLine());
+//								dto.setBevCost(3, manSelNum2);
+//								System.out.println("음료가 추가되었습니다.");
+//								count++;
+							} else if (manNum1 == 2) {
 								System.out.println("2번 음료수정을 고르셨습니다.");
-								// 음료리스트나열
-								// 수정할 음료수를 골라주세요
-								// dto.setBev(0, "스프라이트");
-							}
-							if (manNum1 == 3) {
+								dao.display(dto);
+								System.out.println("수정할 음료의 번호를 골라주세요.");
+								manSelNum3 = Integer.parseInt(sc.nextLine());
+								if (manSelNum3 == 1) {
+
+								} else if (manSelNum3 == 2) {
+
+								} else {
+
+								}
+								// 빈슬롯을 눌렀을때엔?
+								//
+							} else if (manNum1 == 3) {
 								System.out.println("3번 음료삭제를 고르셨습니다.");
 								// 음료리스트 나열
 								// 삭제할 음료수를 골라주세요
-								//ex 2번을 골랐다
-								//--> 2번 삭제후 3번을 2번으로 이동후 카운트--;
+								// ex 2번을 골랐다
+								// --> 2번 삭제후 3번을 2번으로 이동후 카운트--;
 								// dto.setBev(1, "환타");
 								// dto.setBevCost(1, 환타가격);
 								// 만약 4종류가 있는데 2번을 삭제했다면
 								// 3번을 2번으로 4번을 3번으로 for문을 써서 반복시킴
 								// for (int i = 입력받은 값; i< count; i++) {
-								//	dto.setBev(i, dto.bev[i+1]);
-								//	dto.setBevCost(i, dto.bevCost[i+1]);
-								//	dto.setBevCount(i, dto.bevCount[i+1]);
+								// dto.setBev(i, dto.bev[i+1]);
+								// dto.setBevCost(i, dto.bevCost[i+1]);
+								// dto.setBevCount(i, dto.bevCount[i+1]);
 								// }
 								// dto.setBev(count, null);
-								//	dto.setBevCost(count, 0);
+								// dto.setBevCost(count, 0);
 								// dto.setBevCount(count, 0);
-								//	count--
-							}
+								// count--
+							} else if (manNum1 == 0) {
+								break;
 							} else {
 								System.out.println("잘못입력하셨습니다.");
 								continue;
 							}
 						}
+						break;
 					} else {
 						System.out.println("잘못 입력하셨습니다.");
 						continue;
@@ -98,7 +148,7 @@ public class JapangiMain {
 				}
 			} else if (inputNum == 2) {
 				System.out.println("음료수 구매를 선택하셨습니다");
-				dao.display(dto, count);
+				dao.display(dto);
 				System.out.println("9번을 입력시 음료수 구매로 넘어갑니다.");
 				System.out.println("0번을 입력시 초기화면으로 돌아갑니다.");
 				while (true) {
@@ -126,7 +176,7 @@ public class JapangiMain {
 				System.out.println("원하시는 음료수를 선택해주세요");
 				System.out.println("0번을 입력시 잔돈을 반환 후 초기화면으로 돌아갑니다.");
 				while (true) {
-					dao.display(dto, count);
+					dao.display(dto);
 					selNum1 = Integer.parseInt(sc.nextLine());
 					if (selNum1 == 0) {
 						chanMoney1000 = totalMoney / 1000;
@@ -137,9 +187,7 @@ public class JapangiMain {
 						if (totalMoney == 0) {
 							System.out.println("잔돈이 없습니다. 초기화면으로 돌아갑니다.");
 						} else {
-							for (int i=0; i<=changeMoney.length; i++) {
-								
-							}
+
 							if (chanMoney1000 != 0) {
 								System.out.print("천원 " + chanMoney1000 + "개");
 							}
@@ -154,29 +202,31 @@ public class JapangiMain {
 							}
 							if (chanMoney10 != 0) {
 								System.out.print(" 십원 " + chanMoney10 + "개");
-							}							
+							}
 							System.out.println("를 반환후 초기화면으로 돌아갑니다.");
 
 						}
 						totalMoney = 0;
 						break;
 					}
-					if (dto.bevCount[selNum1 -1] < 1) {
+					if (dto.bevCount[selNum1 - 1] < 1) {
+						System.out.println("잔돈 : " + totalMoney);
 						System.out.println("재고가 부족합니다. 다른 음료수를 선택하시거나 0번을 눌러 초기화면으로 돌아가주세요.");
+
 						continue;
 					}
 					System.out.println(dto.bev[selNum1 - 1] + "를 선택하셨습니다.");
 					if (totalMoney < dto.bevCost[selNum1 - 1]) {
+						System.out.println("잔돈 : " + totalMoney);
 						System.out.println("돈이 부족합니다.");
-						System.out.println("음료수를 다시 선택해주세요.");
+						System.out.println("음료수를 다시 선택해주시거나 0번을 눌러 잔돈을 반환 후 초기화면으로 돌아가주세요.");
 
-					}
-					else {
-						totalMoney -= dto.bevCost[selNum1-1];
-						System.out.println(dto.bev[selNum1-1] + "음료가 나왔습니다.");
+					} else {
+						totalMoney -= dto.bevCost[selNum1 - 1];
+						System.out.println(dto.bev[selNum1 - 1] + "음료가 나왔습니다.");
 						System.out.println("잔돈 : " + totalMoney + "원이 남았습니다");
 						System.out.println("잔돈 반환후 초기화면으로 돌아가시려면 0번 더 구매하시려면 원하는 음료를 선택해주세요.");
-						dto.bevCount[selNum1-1] --;
+						dto.bevCount[selNum1 - 1]--;
 					}
 				}
 			}
