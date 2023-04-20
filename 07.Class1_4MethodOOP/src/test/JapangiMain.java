@@ -18,7 +18,6 @@ public class JapangiMain {
 
 		JapangiDAO dao = new JapangiDAO();
 		int seven = 7;
-		int count = 3;
 		String id;
 		String pw;
 		int inputNum;
@@ -62,13 +61,20 @@ public class JapangiMain {
 							if (manNum1 == 1) {
 								System.out.println("1번 음료추가를 고르셨습니다.");
 								System.out.println("최대 6종류의 음료를 보관할 수 있습니다.");
-								dao.display1(dto, seven);
+								dao.display(dto);
 
-								System.out.println("추가하려는 빈 슬롯의 번호를 적어주세요.");
-								System.out.println("0번을 입력하시면 초기화면으로 돌아갑니다.");
-								manAddNum1 = Integer.parseInt(sc.nextLine());
 								while (true) {
-									if (dto.getBev()[manAddNum1 -1] == null) {
+									System.out.println("추가하려는 빈 슬롯의 번호를 적어주세요.");
+									System.out.println("0번을 입력하시면 이전화면으로 돌아갑니다.");
+									manAddNum1 = Integer.parseInt(sc.nextLine());
+									if (manAddNum1 == 0) {
+										break;
+									}
+									if (manAddNum1 < 0 || manAddNum1 > 6) {
+										System.out.println("음료추가가 불가능합니다. 정상적인 슬롯을 골라주세요.");
+										continue;
+									}
+									if (dto.getBev()[manAddNum1 - 1] == null) {
 										System.out.println("음료 추가 가능");
 										System.out.println("추가하실 음료의 이름을 입력해주세요.");
 										addBev = sc.nextLine();
@@ -80,12 +86,11 @@ public class JapangiMain {
 										manSelNum2 = Integer.parseInt(sc.nextLine());
 										dto.setBevCost(manAddNum1 - 1, manSelNum2);
 										System.out.println("음료추가가 완료되었습니다.");
-										count++;
-										break;
-									} else {
+										continue;
+									} else  {
 										System.out.println("음료 추가가 불가능합니다. 다른 슬롯을 골라주세요.");
-									}
-									continue;
+										continue;
+									} 
 								}
 								// 몇번 슬롯에 어떻게?
 								// 빈슬롯부터 순서대로 쌓으려면 ?
