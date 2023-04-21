@@ -26,6 +26,8 @@ public class JapangiMain {
 		int manSelNum1;
 		int manSelNum2;
 		int corNum1;
+		int delNum1;
+		int delNum2;
 		int manAddNum1;
 		int selNum1;
 		int inputMoney;
@@ -96,7 +98,7 @@ public class JapangiMain {
 							} else if (manNum1 == 2) {
 								System.out.println("2번 음료수정을 고르셨습니다.");
 								dao.display(dto);
-								while(true) {
+								while (true) {
 									System.out.println("수정할 음료의 번호를 골라주세요.");
 									System.out.println("0번을 입력시 이전화면으로 돌아갑니다.");
 									corNum1 = Integer.parseInt(sc.nextLine());
@@ -107,26 +109,55 @@ public class JapangiMain {
 										System.out.println("음료추가가 불가능합니다. 정상적인 슬롯을 골라주세요.");
 										continue;
 									}
-									if (dto.getBev()[corNum1 - 1] == null) {
-										System.out.println("비어있는 슬롯입니다.");
-										System.out.println("다른 슬롯을 선택해주세요.");
+									if (dto.getBev()[corNum1 - 1] != null) {
+										System.out.println("음료 수정 가능");
+										System.out.println("수정하실 음료의 이름을 입력해주세요.");
+										addBev = sc.nextLine();
+										dto.setBev(corNum1 - 1, addBev);
+										System.out.println("수정하신 음료의 개수를 입력해주세요.");
+										manSelNum1 = Integer.parseInt(sc.nextLine());
+										dto.setBevCount(corNum1 - 1, manSelNum1);
+										System.out.println("수정히신 음료의 가격을 입력해주세요.");
+										manSelNum2 = Integer.parseInt(sc.nextLine());
+										dto.setBevCost(corNum1 - 1, manSelNum2);
+										System.out.println("음료수정이 완료되었습니다.");
 										continue;
 									} else {
-										//추가하기
+										System.out.println("음료 수정이 불가능합니다. 다른 슬롯을 골라주세요.");
+										continue;
 									}
-									//추가하기
+									// 추가하기
 								}
 							} else if (manNum1 == 3) {
 								System.out.println("3번 음료삭제를 고르셨습니다.");
 								dao.display(dto);
-								System.out.println("삭제할 음료수의 번호를 눌러주세요.");
-								//삭제할 음료수의 번호 입력(스캐너)
-								//입력받은 번호의 음료,개수,카운트 ==>null
-								//빈 슬롯을 선택시 빈슬롯입니다. 다른 음료를 선택해주세요
-								//0번을 입력시 이전화면으로 이동 
-								
-								
-								
+								while (true) {
+									System.out.println("삭제할 음료수의 번호를 눌러주세요.");
+									System.out.println("0번을 입력시 이전화면으로 돌아갑니다.");
+									delNum1 = Integer.parseInt(sc.nextLine());
+									if (delNum1 == 0) {
+										break;
+									}
+									if (delNum1 < 0 || delNum1 > 6) {
+										System.out.println("음료삭제가 불가능합니다. 정상적인 슬롯을 골라주세요.");
+									}
+									if (dto.getBev()[delNum1 - 1] != null) {
+										dto.setBev(delNum1 - 1, null);
+										dto.setBevCount(delNum1 - 1, 0);
+										dto.setBevCost(delNum1 - 1, 0);
+										System.out.println("음료삭제가 완료되었습니다.");
+										dao.display(dto);
+										continue;
+									} else {
+										System.out.println("음료 삭제가 불가능합니다. 비어있지 않은 슬롯을 골라주세요.");
+										continue;
+									}
+								}
+								// 삭제할 음료수의 번호 입력(스캐너)
+								// 입력받은 번호의 음료,개수,카운트 ==>null
+								// 빈 슬롯을 선택시 빈슬롯입니다. 다른 음료를 선택해주세요
+								// 0번을 입력시 이전화면으로 이동
+
 							} else if (manNum1 == 0) {
 								break;
 							} else {
