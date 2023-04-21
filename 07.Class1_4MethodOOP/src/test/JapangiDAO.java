@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Iterator;
+
 public class JapangiDAO {
 	void display(JapangiDTO dto) {
 		for (int i = 0; i < dto.getBev().length; i++) {
@@ -13,4 +15,21 @@ public class JapangiDAO {
 		}
 	}
 
+	void display1() {
+
+	}
+
+	JapangiDTO initDTO(String[] nameArr, int[] priceArr, int[] cntArr) {
+		JapangiDTO dto = new JapangiDTO();
+		for (int i = 0; i < nameArr.length; i++) {
+			dto.setBev(i, nameArr[i]);
+		}
+		for (int i = 0; i < priceArr.length; i++) {
+			dto.setBevCost(i, priceArr[i]);
+		}
+		for (int i = 0; i < cntArr.length; i++) {
+			dto.setBevCount(i, cntArr[i]);
+		}
+		return dto;
+	}
 }

@@ -5,18 +5,13 @@ import java.util.Scanner;
 public class JapangiMain {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		JapangiDTO dto = new JapangiDTO();
-		dto.setBev(0, "콜라");
-		dto.setBev(1, "사이다");
-		dto.setBev(2, "환타");
-		dto.setBevCost(0, 800);
-		dto.setBevCost(1, 1000);
-		dto.setBevCost(2, 900);
-		dto.setBevCount(0, 8);
-		dto.setBevCount(1, 5);
-		dto.setBevCount(2, 1);
 
 		JapangiDAO dao = new JapangiDAO();
+		String[] nameArr = { "콜라", "사이다", "환타", null, null, null };
+		int[] priceArr = { 800, 1100, 500, 0, 0, 0 };
+		int[] cntArr = { 5, 6, 7, 0, 0, 0 };
+		JapangiDTO dto = dao.initDTO(nameArr, priceArr, cntArr);
+
 		String id;
 		String pw;
 		String inputNum;
@@ -192,7 +187,7 @@ public class JapangiMain {
 						}
 						if (inputMoney % 10 != 0) {
 							System.out.println("동전과 지폐만 투입해주세요.");
-							System.out.println("현재 투입된 금액은 : " + totalMoney + "입니다.");
+							System.out.println("현재 투입된 금액은 : " + totalMoney + "원입니다.");
 							continue;
 						}
 					} catch (Exception e) {
@@ -200,7 +195,8 @@ public class JapangiMain {
 						System.out.println("정상적인 값을 입력해주세요.");
 					}
 					totalMoney += inputMoney;
-					System.out.println("현재 투입된 금액은 : " + totalMoney + "입니다.");
+					System.out.println("현재 투입된 금액은 : " + totalMoney + "원입니다.");
+					System.out.println("9번을 입력시 음료구매로 넘어갑니다.");
 				}
 				if (inputMoney == 0) {
 					continue;
