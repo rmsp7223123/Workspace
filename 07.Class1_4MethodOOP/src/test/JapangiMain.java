@@ -86,6 +86,7 @@ public class JapangiMain {
 											manSelNum2 = Integer.parseInt(sc.nextLine());
 											dto.setBevCost(manAddNum1 - 1, manSelNum2);
 											System.out.println("음료추가가 완료되었습니다.");
+											dao.display(dto);
 											continue;
 										} else {
 											System.out.println("음료 추가가 불가능합니다. 다른 슬롯을 골라주세요.");
@@ -124,6 +125,7 @@ public class JapangiMain {
 											manSelNum2 = Integer.parseInt(sc.nextLine());
 											dto.setBevCost(corNum1 - 1, manSelNum2);
 											System.out.println("음료수정이 완료되었습니다.");
+											dao.display(dto);
 											continue;
 										} else {
 											System.out.println("음료 수정이 불가능합니다. 다른 슬롯을 골라주세요.");
@@ -166,7 +168,7 @@ public class JapangiMain {
 							} else if (manNum1.equals("0")) {
 								break;
 							} else {
-								System.out.println("잘못입력하셨습니다.");
+								System.out.println("정상적인 숫자만 입력해주세요.");
 								continue;
 							}
 						}
