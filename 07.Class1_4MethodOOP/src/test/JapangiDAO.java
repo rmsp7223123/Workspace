@@ -165,12 +165,17 @@ public class JapangiDAO {
 			System.out.println("돈을 투입해주세요.");
 			try {
 				tempMoney = Integer.parseInt(sc.nextLine());
-				if (tempMoney == 9 || tempMoney == 0) {
+				if (tempMoney == 9) {
 					return inputMoney;
+				}
+				if (tempMoney == 0) {
+					System.out.println(inputMoney + "원이 반환됐습니다.");
+					return tempMoney;
 				}
 				if (tempMoney % 10 != 0) {
 					System.out.println("동전과 지폐만 투입해주세요.");
-					System.out.println("현재 투입된 금액은 : " + tempMoney + "원입니다.");
+					System.out.println("9번을 입력시 음료구매로 넘어갑니다.");
+					System.out.println("0번을 입력시 투입하신 금액을 반환하고 초기화면으로 돌아갑니다.");
 					continue;
 				}
 			} catch (Exception e) {
@@ -180,10 +185,11 @@ public class JapangiDAO {
 			inputMoney += tempMoney;
 			System.out.println("현재 투입된 금액은 : " + inputMoney + "원입니다.");
 			System.out.println("9번을 입력시 음료구매로 넘어갑니다.");
+			System.out.println("0번을 입력시 투입하신 금액을 반환하고 초기화면으로 돌아갑니다.");
 		}
 	}
 
-	int changeMoney(JapangiDAO dao, JapangiDTO dto, int totalMoney) {
+	int changeMoney(JapangiDTO dto, int totalMoney) {
 		Scanner sc = new Scanner(System.in);
 		int selNum1;
 		int chanMoney1000;
@@ -192,7 +198,7 @@ public class JapangiDAO {
 		int chanMoney50;
 		int chanMoney10;
 		while (true) {
-			dao.display(dto);
+			display(dto);
 			try {
 				selNum1 = Integer.parseInt(sc.nextLine());
 				if (selNum1 == 0) {

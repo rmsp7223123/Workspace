@@ -68,10 +68,13 @@ public class JapangiMain {
 				System.out.println("9번을 입력시 음료수 구매로 넘어갑니다.");
 				System.out.println("0번을 입력시 초기화면으로 돌아갑니다.");
 				totalMoney = dao.buyBev();
+				if (totalMoney == 0) {
+					continue;
+				}
 
 				System.out.println("원하시는 음료수를 선택해주세요");
 				System.out.println("0번을 입력시 잔돈을 반환 후 초기화면으로 돌아갑니다.");
-				totalMoney = dao.changeMoney(dao, dto, totalMoney);
+				totalMoney = dao.changeMoney( dto, totalMoney);
 			}
 
 			else if (inputNum.equals("3")) {
