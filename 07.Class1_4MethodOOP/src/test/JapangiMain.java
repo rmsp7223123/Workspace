@@ -16,10 +16,7 @@ public class JapangiMain {
 		String pw;
 		String inputNum;
 		String manNum1;
-		int selNum1;
-		int inputMoney;
 		int totalMoney = 0;
-		int chanMoney10, chanMoney50, chanMoney100, chanMoney500, chanMoney1000 = 0;
 		while (true) {
 			System.out.println("1 : 관리자기능 ");
 			System.out.println("2 : 음료수구매 ");
