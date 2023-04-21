@@ -156,4 +156,100 @@ public class JapangiDAO {
 		}
 
 	}
+
+	int buyBev() {
+		int inputMoney = 0;
+		int tempMoney = 0;
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.println("돈을 투입해주세요.");
+			try {
+				tempMoney = Integer.parseInt(sc.nextLine());
+				if (tempMoney == 9 || tempMoney == 0) {
+					return inputMoney;
+				}
+				if (tempMoney % 10 != 0) {
+					System.out.println("동전과 지폐만 투입해주세요.");
+					System.out.println("현재 투입된 금액은 : " + tempMoney + "원입니다.");
+					continue;
+				}
+			} catch (Exception e) {
+				inputMoney = 0;
+				System.out.println("정상적인 값을 입력해주세요.");
+			}
+			inputMoney += tempMoney;
+			System.out.println("현재 투입된 금액은 : " + inputMoney + "원입니다.");
+			System.out.println("9번을 입력시 음료구매로 넘어갑니다.");
+		}
+	}
+
+	int changeMoney(JapangiDAO dao, JapangiDTO dto, int totalMoney) {
+		Scanner sc = new Scanner(System.in);
+		int selNum1;
+		int chanMoney1000;
+		int chanMoney500;
+		int chanMoney100;
+		int chanMoney50;
+		int chanMoney10;
+		while (true) {
+			dao.display(dto);
+			try {
+				selNum1 = Integer.parseInt(sc.nextLine());
+				if (selNum1 == 0) {
+					chanMoney1000 = totalMoney / 1000;
+					chanMoney500 = totalMoney % 1000 / 500;
+					chanMoney100 = totalMoney % 1000 % 500 / 100;
+					chanMoney50 = totalMoney % 1000 % 500 % 100 / 50;
+					chanMoney10 = totalMoney % 1000 % 500 % 100 % 50 / 10;
+					if (totalMoney == 0) {
+						System.out.println("잔돈이 없습니다. 초기화면으로 돌아갑니다.");
+					} else {
+
+						if (chanMoney1000 != 0) {
+							System.out.print("천원 " + chanMoney1000 + "개");
+						}
+						if (chanMoney500 != 0) {
+							System.out.print(" 오백원 " + chanMoney500 + "개");
+						}
+						if (chanMoney100 != 0) {
+							System.out.print(" 백원 " + chanMoney100 + "개");
+						}
+						if (chanMoney50 != 0) {
+							System.out.print(" 오십원 " + chanMoney50 + "개");
+						}
+						if (chanMoney10 != 0) {
+							System.out.print(" 십원 " + chanMoney10 + "개");
+						}
+						System.out.println("를 반환후 초기화면으로 돌아갑니다.");
+
+					}
+					totalMoney = 0;
+					return totalMoney;
+				}
+				if (dto.bevCount[selNum1 - 1] < 1) {
+					System.out.println("잔돈 : " + totalMoney);
+					System.out.println("재고가 부족합니다. 다른 음료수를 선택하시거나 0번을 눌러 초기화면으로 돌아가주세요.");
+
+					continue;
+				}
+				System.out.println(dto.bev[selNum1 - 1] + "를 선택하셨습니다.");
+				if (totalMoney < dto.bevCost[selNum1 - 1]) {
+					System.out.println("잔돈 : " + totalMoney);
+					System.out.println("돈이 부족합니다.");
+					System.out.println("음료수를 다시 선택해주시거나 0번을 눌러 잔돈을 반환 후 초기화면으로 돌아가주세요.");
+
+				} else {
+					totalMoney -= dto.bevCost[selNum1 - 1];
+					System.out.println(dto.bev[selNum1 - 1] + "음료가 나왔습니다.");
+					System.out.println("잔돈 : " + totalMoney + "원이 남았습니다");
+					System.out.println("잔돈 반환후 초기화면으로 돌아가시려면 0번 더 구매하시려면 원하는 음료를 선택해주세요.");
+					dto.bevCount[selNum1 - 1]--;
+				}
+			} catch (Exception e) {
+				System.out.println("정상적인 숫자만 입력해주세요.");
+			}
+
+		}
+
+	}
 }

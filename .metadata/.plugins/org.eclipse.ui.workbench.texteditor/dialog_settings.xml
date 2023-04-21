@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="display"/>
+		<item key="selection" value="현재"/>
 		<list key="findhistory">
+			<item value="현재"/>
 			<item value="dto"/>
 			<item value="display"/>
 		</list>
