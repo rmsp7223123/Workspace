@@ -170,7 +170,7 @@ public class JapangiDAO {
 				}
 				if (tempMoney == 0) {
 					System.out.println(inputMoney + "원이 반환됐습니다.");
-					return tempMoney;
+					return -1;
 				}
 				if (tempMoney % 10 != 0) {
 					System.out.println("동전과 지폐만 투입해주세요.");
