@@ -16,12 +16,6 @@ public class JapangiMain {
 		String pw;
 		String inputNum;
 		String manNum1;
-		String addBev;
-		int manSelNum1;
-		int manSelNum2;
-		int corNum1;
-		int delNum1;
-		int manAddNum1;
 		int selNum1;
 		int inputMoney;
 		int totalMoney = 0;
