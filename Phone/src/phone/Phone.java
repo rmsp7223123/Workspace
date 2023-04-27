@@ -1,6 +1,6 @@
 package phone;
 
-public class phone {
+public class Phone {
 //	-기능1: 전원 켜기 & 끄기 : return 이 없는 기능으로 단순하게 전원이 켜고 꺼지며 , 상태 정보가 변경 된다
 //		    (ex . 전원 켜기 : 상태 ( 전원 켜짐 ) , 전원 끄기 ( 전원 꺼짐 )
 //		    
