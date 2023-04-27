@@ -8,6 +8,7 @@ public class Phone {
 	String state;
 	String color;
 	String power;
+	String selNum1;
 	public Phone(String model, String color) {
 		this.model = model;
 		this.color = color;
@@ -21,9 +22,22 @@ public class Phone {
 				System.out.println("전원이 켜졌습니다.");
 				System.out.println("원하시는 기능을 선택해주세요.");
 				System.out.println("1번 = 전화걸기, 2번 전원종료");
+				while(true) {
+					selNum1 = sc.nextLine();
+					if (selNum1.equals("1")) {
+						System.out.println("전화걸기로 이동합니다. 통화하실 상대방의 번호를 입력해주세요.");
+						//스캐너 추가 
+						// 음성메시지 송신, 수신기능추가
+					} else if (selNum1.equals("2")) {
+						System.out.println("전원종료를 선택하셨습니다. 전원이 종료됩니다.");
+						break;
+					}
+				}
+				
 			} else {
 				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 			}
+			break;
 		}
 	}
 
