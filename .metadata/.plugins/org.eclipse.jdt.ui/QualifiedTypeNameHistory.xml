@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.StringIndexOutOfBoundsException"/>
-    <fullyQualifiedTypeName name="javax.sound.midi.MetaEventListener"/>
-    <fullyQualifiedTypeName name="java.text.ParseException"/>
-    <fullyQualifiedTypeName name="java.lang.Double"/>
-    <fullyQualifiedTypeName name="java.lang.Boolean"/>
-    <fullyQualifiedTypeName name="java.util.Random"/>
-    <fullyQualifiedTypeName name="java.util.Arrays"/>
-    <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
-    <fullyQualifiedTypeName name="java.util.Collections"/>
-    <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.io.FileInputStream"/>
     <fullyQualifiedTypeName name="pack01_class.Ex01_Student"/>
@@ -43,7 +33,6 @@
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="test01.DrinkDAO"/>
     <fullyQualifiedTypeName name="test01.DrinkDTO"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="pack01.hankook.Tire"/>
     <fullyQualifiedTypeName name="pack02.kumho.Tire"/>
     <fullyQualifiedTypeName name="java.lang.AbstractMethodError"/>
@@ -51,7 +40,6 @@
     <fullyQualifiedTypeName name="pack.a.B"/>
     <fullyQualifiedTypeName name="pack01.extend.ChildClass"/>
     <fullyQualifiedTypeName name="pack01.extend.ParentClass"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="pack02.extend.SuperClass"/>
     <fullyQualifiedTypeName name="pack02.extend.SubClass"/>
     <fullyQualifiedTypeName name="java.lang.Deprecated"/>
@@ -60,4 +48,16 @@
     <fullyQualifiedTypeName name="pack04.extend.SmartPhone"/>
     <fullyQualifiedTypeName name="pack04.extend.DmbPhone"/>
     <fullyQualifiedTypeName name="pack05.abstrac.Cat"/>
+    <fullyQualifiedTypeName name="pack01.inter.TestInterface"/>
+    <fullyQualifiedTypeName name="pack02.inter.RemoteControl"/>
+    <fullyQualifiedTypeName name="pack02.inter.Television"/>
+    <fullyQualifiedTypeName name="pack02.inter.Audio"/>
+    <fullyQualifiedTypeName name="pack03.inter.AndroidOnclick"/>
+    <fullyQualifiedTypeName name="pack04.db.OracleDAO"/>
+    <fullyQualifiedTypeName name="pack04.db.MysqlDAO"/>
+    <fullyQualifiedTypeName name="pack04.db.DataAccessObject"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="phone.phone"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.StringIndexOutOfBoundsException"/>
 </qualifiedTypeNameHistroy>
