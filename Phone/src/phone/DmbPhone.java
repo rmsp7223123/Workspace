@@ -14,7 +14,7 @@ public class DmbPhone extends Phone {
 		System.out.println("DMB 시청을 시작합니다.");
 		System.out.println("채널 : " + channel);
 		System.out.println("채널을 변경하시려면 1번, 그만보시려면 0번을 입력해주세요.");
-		while(true) {			
+		while (true) {
 			selDmb = sc.nextLine();
 			if (selDmb.equals("1")) {
 				chanCha();
