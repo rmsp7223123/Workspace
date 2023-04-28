@@ -1,10 +1,5 @@
 package phone;
 
-public class DmbPhone extends Phone{
+public class DmbPhone {
 
-	public DmbPhone(String model, String color) {
-		super(model, color);
-		// TODO Auto-generated constructor stub
-	}
-	
 }
