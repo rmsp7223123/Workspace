@@ -12,19 +12,11 @@ public class StudentDTO {
 //	외부에서의 접근이 막혀있는 변수를 메소드를 통해 접근 가능하게 만드는 구조
 //	ex)  score1 => getScore1()메소드 => score1에 들어있는 값을 리턴
 //		     	   getScore1(int score) => score1에 값을 변경
-	private int num, lan, mat, eng, total;
+	private int num = 10;
+	private int lan, mat, eng, total;
 	private double avg;
 	String name;
-	
-	public StudentDTO(int num, int lan, int mat, int eng, String name) {
-		this.num = num;
-		this.lan = lan;
-		this.mat = mat;
-		this.eng = eng;
-		this.total = this.lan+ this.mat + this.eng;
-		this.avg = (double)this.total/3;
-		this.name = name;
-	}
+
 
 	public int getNum() {
 		return num;

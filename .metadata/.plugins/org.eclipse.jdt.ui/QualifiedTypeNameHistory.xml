@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.Exception"/>
-    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
-    <fullyQualifiedTypeName name="pack01_class.Ex01_Student"/>
-    <fullyQualifiedTypeName name="pack02_field.Ex01_car"/>
     <fullyQualifiedTypeName name="pack02_field.Ex02_Field"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="pack03_constructor.Ex02_Korean"/>
@@ -56,8 +52,12 @@
     <fullyQualifiedTypeName name="pack04.db.OracleDAO"/>
     <fullyQualifiedTypeName name="pack04.db.MysqlDAO"/>
     <fullyQualifiedTypeName name="pack04.db.DataAccessObject"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="phone.phone"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.StringIndexOutOfBoundsException"/>
+    <fullyQualifiedTypeName name="java.util.prefs.BackingStoreException"/>
+    <fullyQualifiedTypeName name="pack01.nasted.A.B"/>
+    <fullyQualifiedTypeName name="java.beans.MethodDescriptor"/>
+    <fullyQualifiedTypeName name="pack01.nasted.A.C"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>

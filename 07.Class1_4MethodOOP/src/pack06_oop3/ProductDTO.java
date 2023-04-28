@@ -2,7 +2,7 @@ package pack06_oop3;
 
 public class ProductDTO {
 	// 정보 은닉(information hiding), 캡슐화(encapsulation)
-	private int num;
+	private int num= 10;
 	private String name;
 	private int price;
 	private int count;
