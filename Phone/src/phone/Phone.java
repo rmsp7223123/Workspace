@@ -97,7 +97,8 @@ public class Phone {
 				reciMsg();
 				continue;
 			} else if (callCho.equals("0")) {
-				System.out.println("취소합니다.");
+				System.out.println("취소하고 이전화면으로 이동합니다.");
+				setState("켜짐");
 				break;
 			} else {
 				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
@@ -111,6 +112,7 @@ public class Phone {
 		setSendPhoneNum(sc.nextLine());
 		if (getSendPhoneNum().equals("0")) {
 			System.out.println("이전화면으로 이동합니다.");
+			setState("켜짐");
 		} else {
 			while (true) {
 				System.out.println("전달하실 메시지를 입력해주세요. 0번을 입력시 메시지 전송을 취소하고 이전화면으로 이동합니다.");

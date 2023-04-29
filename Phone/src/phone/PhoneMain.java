@@ -23,7 +23,7 @@ public class PhoneMain {
 			String model = sc.nextLine();
 			System.out.println("구매하시려는 제품의 색상을 입력해주세요.");
 			String color = sc.nextLine();
-			System.out.println("원하시는 번호를 입력해주세요.");
+			System.out.println("원하시는 전화번호를 입력해주세요.");
 			String myPhoneNum = sc.nextLine();
 			Phone phone = new Phone(selPhone, model, color, myPhoneNum);
 			DmbPhone dmbPhone = new DmbPhone(selPhone, model, color, myPhoneNum);
@@ -45,7 +45,7 @@ public class PhoneMain {
 				}
 				if (phone.getState().equals("켜짐")) {
 					while (true) {
-						System.out.println("전화기능으로 이동하시려면 1번을 전원을 끄시려면 0번을 입력해주세요.");
+						System.out.println("전화기능으로 이동하시려면 1번 \n전원을 끄시려면 0번을 입력해주세요.");
 						selFunc = sc.nextLine();
 						if (selFunc.equals("1")) {
 							phone.call();
@@ -76,7 +76,7 @@ public class PhoneMain {
 				if (dmbPhone.getState().equals("켜짐")) {
 					while (true) {
 						dmbPhone.stateOn();
-						System.out.println("전화기능으로 이동하시려면 1번을 DMB기능을 이용하시려면 2번을 전원을 끄시려면 0번을 입력해주세요.");
+						System.out.println("전화기능으로 이동하시려면 1번 DMB기능을 이용하시려면 2번 \n전원을 끄시려면 0번을 입력해주세요.");
 						selFunc = sc.nextLine();
 						if (selFunc.equals("1")) {
 							dmbPhone.call();
@@ -108,20 +108,20 @@ public class PhoneMain {
 				}
 				if (smartPhone.getState().equals("켜짐")) {
 					while (true) {
-						smartPhone.stateOn();
-						System.out.println("전화기능으로 이동하시려면 1번을 DMB기능을 이용하시려면 2번을 인터넷을 이용하시려면 3번을 전원을 끄시려면 0번을 입력해주세요.");
+						System.out.println(
+								"전화기능으로 이동하시려면 1번 DMB기능을 이용하시려면 2번 \n인터넷을 이용하시려면 3번 웹툰을 이용하시려면 4번 \n전원을 끄시려면 0번을 입력해주세요.");
 						selFunc = sc.nextLine();
 						if (selFunc.equals("1")) {
 							smartPhone.call();
-							continue;
 						} else if (selFunc.equals("0")) {
 							smartPhone.stateOff();
 							break;
 						} else if (selFunc.equals("2")) {
 							smartPhone.watchDmb();
-							continue;
 						} else if (selFunc.equals("3")) {
 							smartPhone.entInter();
+						} else if (selFunc.equals("4")) {
+							smartPhone.webtoon();
 						}
 					}
 					break;

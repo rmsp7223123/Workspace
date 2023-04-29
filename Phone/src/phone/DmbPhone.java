@@ -19,6 +19,7 @@ public class DmbPhone extends Phone {
 			if (selDmb.equals("1")) {
 				chanCha();
 			} else if (selDmb.equals("0")) {
+				setState("켜짐");
 				break;
 			} else {
 				System.out.println("잘못 입력하셨습니다. 다시입력해주세요.");
@@ -34,6 +35,7 @@ public class DmbPhone extends Phone {
 				int chanCha = Integer.parseInt(sc.nextLine());
 				if (chanCha == 0) {
 					System.out.println("채널변경을 그만하고 이전화면으로 이동합니다.");
+					setState("켜짐");
 					break;
 				} else if (chanCha == getChannel()) {
 					System.out.println("같은 채널로는 이동하실 수 없습니다.");
