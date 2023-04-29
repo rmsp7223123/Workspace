@@ -39,7 +39,7 @@ public class PhoneMain {
 					} else if (powerBtn.equals("0")) {
 						break;
 					} else {
-						System.out.println("잘못 누르셨습니다. 다시눌러주세요");
+						System.out.println("잘못 입력하셨습니다. 다시눌러주세요");
 						continue;
 					}
 				}
@@ -128,9 +128,6 @@ public class PhoneMain {
 				} else {
 					break;
 				}
-			} else {
-				System.out.println("잘못 입력하셨습니다. 정확한 숫자를 입력해주세요.");
-				continue;
 			}
 		}
 	}
