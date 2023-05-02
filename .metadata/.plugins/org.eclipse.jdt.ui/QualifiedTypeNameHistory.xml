@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="pack02_field.Ex02_Field"/>
-    <fullyQualifiedTypeName name="java.lang.Object"/>
-    <fullyQualifiedTypeName name="pack03_constructor.Ex02_Korean"/>
-    <fullyQualifiedTypeName name="pack03_constructor.Ex03_Car"/>
-    <fullyQualifiedTypeName name="pack03_constructor.Test01_Member"/>
-    <fullyQualifiedTypeName name="pack03_constructor.Test01_MemberDTo"/>
-    <fullyQualifiedTypeName name="pack01_base.Ex01_Car"/>
-    <fullyQualifiedTypeName name="pack01_base.Ex02_Calculator"/>
-    <fullyQualifiedTypeName name="pack01_base.Ex02_CalculatorMain"/>
-    <fullyQualifiedTypeName name="pack01_base.Ex03_Computer"/>
-    <fullyQualifiedTypeName name="pack01_base.Ex04_Car"/>
-    <fullyQualifiedTypeName name="pack01_base.Ex06_Method"/>
     <fullyQualifiedTypeName name="pack01_base.Ex07_OverLoading"/>
     <fullyQualifiedTypeName name="pack02_static.Ex01_Static"/>
     <fullyQualifiedTypeName name="pack02_static.Ex02_Calculator"/>
@@ -23,7 +11,6 @@
     <fullyQualifiedTypeName name="pack04_oop2.StudentDAO"/>
     <fullyQualifiedTypeName name="pack04_oop2.StudentDTO"/>
     <fullyQualifiedTypeName name="test.Japangi"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="TestDAO"/>
     <fullyQualifiedTypeName name="test.JapangiDTO"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
@@ -40,7 +27,6 @@
     <fullyQualifiedTypeName name="pack02.extend.SubClass"/>
     <fullyQualifiedTypeName name="java.lang.Deprecated"/>
     <fullyQualifiedTypeName name="pack04.extend.CellPhone"/>
-    <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="pack04.extend.SmartPhone"/>
     <fullyQualifiedTypeName name="pack04.extend.DmbPhone"/>
     <fullyQualifiedTypeName name="pack05.abstrac.Cat"/>
@@ -58,6 +44,20 @@
     <fullyQualifiedTypeName name="pack01.nasted.A.B"/>
     <fullyQualifiedTypeName name="java.beans.MethodDescriptor"/>
     <fullyQualifiedTypeName name="pack01.nasted.A.C"/>
+    <fullyQualifiedTypeName name="java.awt.Toolkit"/>
+    <fullyQualifiedTypeName name="pack01.thread.Ex02_BeepTask"/>
+    <fullyQualifiedTypeName name="java.lang.Thread"/>
+    <fullyQualifiedTypeName name="pack01.thread.Ex05_ThreadB"/>
+    <fullyQualifiedTypeName name="pack01.thread.Ex05_ThreadA"/>
+    <fullyQualifiedTypeName name="pack01.thread.Ex06_ThreadTest"/>
+    <fullyQualifiedTypeName name="pack01.thread.YoutubeThread"/>
+    <fullyQualifiedTypeName name="pack01.thread.MelonThread"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="pack02.horsegame.Player"/>
+    <fullyQualifiedTypeName name="java.awt.im.InputContext"/>
+    <fullyQualifiedTypeName name="java.io.InputStream"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

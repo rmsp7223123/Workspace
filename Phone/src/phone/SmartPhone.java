@@ -43,7 +43,7 @@ public class SmartPhone extends DmbPhone {
 					try {
 						System.out.println("읽으실 웹툰의 번호를 선택해주시거나 0번을 눌러 취소해주세요.");
 						selWeb = Integer.parseInt(sc.nextLine());
-						if (selWeb > 0 && selWeb < webArr.length) {
+						if (selWeb > 0 && selWeb <= webArr.length) {
 							System.out.println(webArr[selWeb - 1] + "을 선택하셨습니다.");
 							System.out.println("웹툰을 그만 보시고 싶으실 땐 0번을 입력하시면 이전화면으로 이동합니다.");
 							System.out.println("내\n\n용");
@@ -51,7 +51,6 @@ public class SmartPhone extends DmbPhone {
 								stopWeb = sc.nextLine();
 								if (stopWeb.equals("0")) {
 									System.out.println("웹툰을 그만보고 이전화면으로 이동합니다.");
-									setState("켜짐");
 									break;
 								} else {
 									System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
@@ -59,7 +58,6 @@ public class SmartPhone extends DmbPhone {
 							}
 						} else if (selWeb == 0) {
 							System.out.println("취소하고 이전화면으로 이동합니다.");
-							setState("켜짐");
 							break;
 						} else {
 							System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
