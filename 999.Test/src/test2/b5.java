@@ -10,21 +10,35 @@ public class b5 {
 		System.out.println("B값을 입력해주세요.");
 		int dataB = Integer.parseInt(sc.nextLine());
 		int sum = 0;
+		int sumA = 0;
+		int sumB = 0;
 		if (dataA > dataB) {
 			System.out.println("data A : " + dataA);
 			System.out.println("data B : " + dataB);
-			for (int i = dataB; i<dataA; i++) {
-				sum += dataB++;
+			for (int i = 1; i <= dataB; i++) {
+				sumB += i;
 			}
-			System.out.println("총합: " +(sum+dataA));
+			for (int i = 1; i <= dataA; i++) {
+				sumA += i;
+			}
+			sum = sumB + sumA;
+			System.out.println("총합은 : " + sum);
+
 		} else if (dataA < dataB) {
-			for (int i = dataA; i<dataB; i++) {
-				sum += dataA++;
+			System.out.println("data A : " + dataA);
+			System.out.println("data B : " + dataB);
+			for (int i = 1; i <= dataB; i++) {
+				sumB += i;
 			}
-			System.out.println("총합: " +(sum+dataB));
+			for (int i = 1; i <= dataA; i++) {
+				sumA += i;
+			}
+			sum = sumB + sumA;
+			System.out.println("총합은 : " + sum);
+
 		} else {
 			sum = dataA + dataB;
-			System.out.println("누적합 : " + sum);
+			System.out.println("총합 : " + sum);
 		}
 	}
 }
