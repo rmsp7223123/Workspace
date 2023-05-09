@@ -12,8 +12,10 @@ public class c1 {
 			int b = ran.nextInt(10);
 			numbers[i] = b;
 			sum += b;
+
 			System.out.println(numbers[i]);
 		}
 		System.out.println("총합 : " + sum);
+
 	}
 }
