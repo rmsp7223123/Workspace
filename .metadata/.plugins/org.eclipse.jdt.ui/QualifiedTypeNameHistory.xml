@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="pack04.db.OracleDAO"/>
-    <fullyQualifiedTypeName name="pack04.db.MysqlDAO"/>
-    <fullyQualifiedTypeName name="pack04.db.DataAccessObject"/>
-    <fullyQualifiedTypeName name="phone.phone"/>
-    <fullyQualifiedTypeName name="java.lang.StringIndexOutOfBoundsException"/>
-    <fullyQualifiedTypeName name="java.util.prefs.BackingStoreException"/>
-    <fullyQualifiedTypeName name="pack01.nasted.A.B"/>
-    <fullyQualifiedTypeName name="java.beans.MethodDescriptor"/>
-    <fullyQualifiedTypeName name="pack01.nasted.A.C"/>
-    <fullyQualifiedTypeName name="java.awt.Toolkit"/>
-    <fullyQualifiedTypeName name="pack01.thread.Ex02_BeepTask"/>
-    <fullyQualifiedTypeName name="java.lang.Thread"/>
-    <fullyQualifiedTypeName name="pack01.thread.Ex05_ThreadB"/>
-    <fullyQualifiedTypeName name="pack01.thread.Ex05_ThreadA"/>
-    <fullyQualifiedTypeName name="pack01.thread.Ex06_ThreadTest"/>
-    <fullyQualifiedTypeName name="pack01.thread.YoutubeThread"/>
     <fullyQualifiedTypeName name="pack01.thread.MelonThread"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="pack02.horsegame.Player"/>
@@ -53,11 +37,27 @@
     <fullyQualifiedTypeName name="java.util.Vector"/>
     <fullyQualifiedTypeName name="pack01.list.Ex02_Vector"/>
     <fullyQualifiedTypeName name="pack01.list.TestDTO"/>
-    <fullyQualifiedTypeName name="java.util.LinkedList"/>
     <fullyQualifiedTypeName name="java.lang.Boolean"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="pack01.list.BoardDAO"/>
     <fullyQualifiedTypeName name="pack01.list.BoardDTO"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="java.util.Stack"/>
+    <fullyQualifiedTypeName name="java.util.Queue"/>
+    <fullyQualifiedTypeName name="java.util.LinkedList"/>
+    <fullyQualifiedTypeName name="pack01.list.BoardDAO"/>
+    <fullyQualifiedTypeName name="phone.Phone"/>
+    <fullyQualifiedTypeName name="java.lang.Class"/>
+    <fullyQualifiedTypeName name="pack02.jdbc.Ex01_Jdbc"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="oracle.jdbc.driver.OracleDriver"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="pack02.jdbc.EmpDAO"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

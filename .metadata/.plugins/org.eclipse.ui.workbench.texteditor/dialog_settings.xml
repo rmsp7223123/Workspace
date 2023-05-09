@@ -6,8 +6,12 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="return"/>
+		<item key="selection" value="Func"/>
 		<list key="findhistory">
+			<item value="list"/>
+			<item value="Funclist"/>
+			<item value="setFunc"/>
+			<item value="func"/>
 			<item value="return"/>
 			<item value="set"/>
 			<item value="현재"/>
