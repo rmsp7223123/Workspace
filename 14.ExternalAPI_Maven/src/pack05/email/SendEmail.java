@@ -24,7 +24,7 @@ public class SendEmail {
 		mail.setHostName("smtp.naver.com");
 		mail.setCharset("utf-8");
 		mail.setDebug(true);// 오류를 찾아서 개발하고 있는 과정인지
-		mail.setAuthentication("mbj98", "sojung344@");
+		mail.setAuthentication("mbj98", "");
 		mail.setSSLOnConnect(true);
 //		===========================고정===========================
 
