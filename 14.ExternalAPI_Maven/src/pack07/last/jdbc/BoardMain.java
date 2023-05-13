@@ -24,7 +24,7 @@ public class BoardMain {
 		BoardMain bm = new BoardMain();
 		BoardDAO dao = new BoardDAO();
 		Scanner sc = new Scanner(System.in);
-		dao.insertBoard();
-		
+		dao.insertBoard();	
 	}
+	
 }
