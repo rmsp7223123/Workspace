@@ -15,6 +15,7 @@ public class DAO {
 	ResultSet rs;
 
 	public void menu() {
+		String loginSelect;
 		while (true) {
 			System.out.println("메뉴를 선택해주세요.");
 			System.out.println("0번 취소");
@@ -28,9 +29,22 @@ public class DAO {
 //				로그인 상태시 로그아웃메소드로, 로그아웃 상태시 로그인 메소드로 이동하게
 				if (dto.getState().equals("off")) {
 //					로그아웃 상태이니 로그인창(메소드 만들어서 setState(on)) 유도 or 이전화면
+					while (true) {
+						System.out.println("로그아웃 상태입니다. 로그인하시려면 1번 취소하시려면 0번을 입력해주세요.");
+						loginSelect = sc.nextLine();
+						if (loginSelect.equals("1")) {
+							login();
+							break;
+						} else if (loginSelect.equals("0")) {
+							System.out.println("취소합니다.");
+							break;
+						} else {
+							System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+						}
+					}
 				}
 				if (dto.getState().equals("on")) {
-//					로그인 상태이므로 로그아웃(메소드 만들어서 "")하기 or 이전화면으로 이동하기
+					logout();
 				}
 			} else if (select.equals("2")) {
 				createAccount();
@@ -264,6 +278,89 @@ public class DAO {
 				}
 			} else if (deleteSelect.equals("0")) {
 				System.out.println("회원탈퇴를 취소합니다.");
+				break;
+			} else {
+				System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+			}
+		}
+		menu();
+	}
+
+	public void login() {
+		String id, pw;
+		String loginId;
+		String loginPw = null;
+		String loginSelect;
+		while (true) {
+			System.out.println("1번을 누르면 로그인를 진행합니다.");
+			System.out.println("0번을 누르면 로그인을 취소하고 이전화면으로 이동합니다.");
+			loginSelect = sc.nextLine();
+			if (loginSelect.equals("1")) {
+				while (true) {
+					System.out.println("아이디를 입력해주세요.");
+					id = sc.nextLine();
+					while (true) {
+						System.out.println("입력하신 아이디가 " + id + "가 맞으시면 1번을, 다시 입력하시려면 2번을, 이전화면으로 이동하시려면 0번을 입력해주세요.");
+						loginId = sc.nextLine();
+						if (loginId.equals("1")) {
+							while (true) {
+								System.out.println("비밀번호를 입력해주세요.");
+								pw = sc.nextLine();
+								while (true) {
+									System.out.println(
+											"입력하신 비밀번호가 : " + pw + " 가 맞으시면 1번을, 다시입력하시려면 2번을, 취소하시려면 0번을 입력해주세요.");
+									loginPw = sc.nextLine();
+									if (loginPw.equals("1")) {
+//										db 테이블에서 비교후 맞으면 탈출후 메뉴로 이동하고 아이디나 비밀번호가 틀릴경우 다시 입력받게
+									} else if (loginPw.equals("2")) {
+										break;
+									} else if (loginPw.equals("0")) {
+										break;
+									} else {
+										System.out.println("잘못 입력하셨습니다.");
+									}
+								}
+								if (loginPw.equals("0")) {
+									break;
+								}
+							}
+						} else if (loginId.equals("2")) {
+							break;
+						} else if (loginId.equals("0")) {
+							System.out.println("이전화면으로 이동합니다.");
+							break;
+						} else {
+							System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+						}
+						if (loginPw.equals("0")) {
+							break;
+						}
+					}
+					if (loginId.equals("1") || loginId.equals("0")) {
+						break;
+					}
+				}
+			} else if (loginSelect.equals("0")) {
+				System.out.println("로그인을 취소합니다.");
+				break;
+			} else {
+				System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+			}
+
+		}
+	}
+
+	public void logout() {
+		String logoutSelect;
+		while (true) {
+			System.out.println("로그아웃 하시려면 1번을 취소하시려면 0번을 입력해주세요.");
+			logoutSelect = sc.nextLine();
+			if (logoutSelect.equals("1")) {
+				dto.setState("off");
+				System.out.println("로그아웃 되었습니다.");
+				break;
+			} else if (logoutSelect.equals("0")) {
+				System.out.println("취소하셨습니다.");
 				break;
 			} else {
 				System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
