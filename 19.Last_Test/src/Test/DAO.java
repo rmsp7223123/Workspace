@@ -25,7 +25,7 @@ public class DAO {
 			System.out.println("5번 날씨보기");
 			String select = sc.nextLine();
 			if (select.equals("1")) {
-
+//				로그인 상태시 로그아웃메소드로, 로그아웃 상태시 로그인 메소드로 이동하게
 			} else if (select.equals("2")) {
 				createAccount();
 				break;
@@ -33,9 +33,9 @@ public class DAO {
 				deleteAccount();
 				break;
 			} else if (select.equals("4")) {
-
+//				게시판 메소드
 			} else if (select.equals("5")) {
-
+//				광주 날씨보기 추가
 			} else if (select.equals("0")) {
 				System.out.println("취소합니다.");
 				break;
@@ -56,6 +56,7 @@ public class DAO {
 			while (true) {
 				System.out.println("입력하신 아이디가" + id + "가 맞으시면 1번 다시 입력하시려면 0번을입력해주세요.");
 				createSelect = sc.nextLine();
+//				db내 중복된 값이 있을경우 어떻게 안되게 할건지 추가
 				if (createSelect.equals("1")) {
 					dto.setId(id);
 					break;
@@ -176,10 +177,9 @@ public class DAO {
 	}
 
 	public void deleteAccount() {
-		String id, pw;
+		String id;
 		String deleteSelect;
 		String deleteId;
-		String deletePw;
 		System.out.println("회원 탈퇴를 선택하셨습니다.");
 		while (true) {
 			System.out.println("1번을 누르면 회원탈퇴를 진행합니다.");
@@ -189,17 +189,24 @@ public class DAO {
 				while (true) {
 					System.out.println("아이디를 입력해주세요.");
 					id = sc.nextLine();
-					System.out.println("입력하신 아이디가 " + id + "가 맞으시면 1번 다시 입력하시려면 2번 이전화면으로 이동하시려면 0번을 입력해주세요.");
-					deleteId = sc.nextLine();
-					if (deleteId.equals("1")) {
-
-					} else if (deleteId.equals("2")) {
-						continue;
-					} else if (deleteId.equals("0")) {
-						System.out.println("이전화면으로 이동합니다.");
+					while (true) {
+						System.out.println("입력하신 아이디가 " + id + "가 맞으시면 1번을, 다시 입력하시려면 2번을, 이전화면으로 이동하시려면 0번을 입력해주세요.");
+						deleteId = sc.nextLine();
+						if (deleteId.equals("1")) {
+//				            비밀번호추가하고 db내에서 member_id, member_pw랑 비교
+//							코드 더러워지는거 어떻게 깔끔하게 수정할지
+							break;
+						} else if (deleteId.equals("2")) {
+							break;
+						} else if (deleteId.equals("0")) {
+							System.out.println("이전화면으로 이동합니다.");
+							break;
+						} else {
+							System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+						}
+					}
+					if (deleteId.equals("1") || deleteId.equals("0")) {
 						break;
-					} else {
-						System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
 					}
 				}
 			} else if (deleteSelect.equals("0")) {
