@@ -26,6 +26,12 @@ public class DAO {
 			String select = sc.nextLine();
 			if (select.equals("1")) {
 //				로그인 상태시 로그아웃메소드로, 로그아웃 상태시 로그인 메소드로 이동하게
+				if (dto.getState().equals("off")) {
+//					로그아웃 상태이니 로그인창(메소드 만들어서 setState(on)) 유도 or 이전화면
+				}
+				if (dto.getState().equals("on")) {
+//					로그인 상태이므로 로그아웃(메소드 만들어서 "")하기 or 이전화면으로 이동하기
+				}
 			} else if (select.equals("2")) {
 				createAccount();
 				break;
@@ -35,7 +41,7 @@ public class DAO {
 			} else if (select.equals("4")) {
 //				게시판 메소드
 			} else if (select.equals("5")) {
-//				광주 날씨보기 추가
+//				공공데이터 광주 날씨보기 추가
 			} else if (select.equals("0")) {
 				System.out.println("취소합니다.");
 				break;
@@ -53,10 +59,16 @@ public class DAO {
 		while (true) {
 			System.out.println("아이디(10글자이내)를 입력해주세요.");
 			String id = sc.nextLine();
+			boolean isDuplicated = checkDuplicatedId(id);
+			if (isDuplicated) {
+				System.out.println("이미 사용중인 아이디입니다. 다시 입력해주세요.");
+				continue;
+			} else {
+				dto.setId(id);
+			}
 			while (true) {
 				System.out.println("입력하신 아이디가" + id + "가 맞으시면 1번 다시 입력하시려면 0번을입력해주세요.");
 				createSelect = sc.nextLine();
-//				db내 중복된 값이 있을경우 어떻게 안되게 할건지 추가
 				if (createSelect.equals("1")) {
 					dto.setId(id);
 					break;
@@ -176,10 +188,30 @@ public class DAO {
 		menu();
 	}
 
+	private boolean checkDuplicatedId(String id) {
+		boolean result = false;
+		try {
+			conn = getConn();
+			ps = conn.prepareStatement("SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_ID = ?");
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				result = true;
+			}
+		} catch (SQLException e) {
+			System.out.println("오류");
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return result;
+	}
+
 	public void deleteAccount() {
-		String id;
+		String id, pw;
 		String deleteSelect;
 		String deleteId;
+		String deletePw = null;
 		System.out.println("회원 탈퇴를 선택하셨습니다.");
 		while (true) {
 			System.out.println("1번을 누르면 회원탈퇴를 진행합니다.");
@@ -193,9 +225,27 @@ public class DAO {
 						System.out.println("입력하신 아이디가 " + id + "가 맞으시면 1번을, 다시 입력하시려면 2번을, 이전화면으로 이동하시려면 0번을 입력해주세요.");
 						deleteId = sc.nextLine();
 						if (deleteId.equals("1")) {
-//				            비밀번호추가하고 db내에서 member_id, member_pw랑 비교
-//							코드 더러워지는거 어떻게 깔끔하게 수정할지
-							break;
+							while (true) {
+								System.out.println("비밀번호를 입력해주세요.");
+								pw = sc.nextLine();
+								while (true) {
+									System.out.println(
+											"입력하신 비밀번호가 : " + pw + " 가 맞으시면 1번을, 다시입력하시려면 2번을, 취소하시려면 0번을 입력해주세요.");
+									deletePw = sc.nextLine();
+									if (deletePw.equals("1")) {
+
+									} else if (deletePw.equals("2")) {
+										break;
+									} else if (deletePw.equals("0")) {
+										break;
+									} else {
+										System.out.println("잘못 입력하셨습니다.");
+									}
+								}
+								if (deletePw.equals("0")) {
+									break;
+								}
+							}
 						} else if (deleteId.equals("2")) {
 							break;
 						} else if (deleteId.equals("0")) {
@@ -203,6 +253,9 @@ public class DAO {
 							break;
 						} else {
 							System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+						}
+						if (deletePw.equals("0")) {
+							break;
 						}
 					}
 					if (deleteId.equals("1") || deleteId.equals("0")) {
