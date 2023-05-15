@@ -22,7 +22,8 @@ public class DAO {
 			System.out.println("1번 로그인/로그아웃");
 			System.out.println("2번 회원가입");
 			System.out.println("3번 회원탈퇴");
-			System.out.println("4번 게시판");
+			System.out.println("4번 회원정보보기 및 수정");
+			System.out.println("5번 게시판");
 			System.out.println("5번 날씨보기");
 			String select = sc.nextLine();
 			if (select.equals("1")) {
@@ -53,8 +54,11 @@ public class DAO {
 				deleteAccount();
 				break;
 			} else if (select.equals("4")) {
-//				게시판 메소드
+//				회원정보보기 및 수정
+				Account();
 			} else if (select.equals("5")) {
+//				게시판
+			} else if (select.equals("6")) {
 //				공공데이터 광주 날씨보기 추가
 			} else if (select.equals("0")) {
 				System.out.println("취소합니다.");
@@ -96,63 +100,9 @@ public class DAO {
 				break;
 			}
 		}
-		while (true) {
-			System.out.println("비밀번호(10글자이내)를 입력해주세요.");
-			String pw = sc.nextLine();
-			while (true) {
-				System.out.println("입력하신 비밀번호" + pw + "가 맞으시면 1번 다시 입력하시려면 0번을입력해주세요.");
-				createSelect = sc.nextLine();
-				if (createSelect.equals("1")) {
-					dto.setPw(pw);
-					break;
-				} else if (createSelect.equals("0")) {
-					break;
-				} else {
-					System.out.println("잘못입력하셨습니다.");
-				}
-			}
-			if (createSelect.equals("1")) {
-				break;
-			}
-		}
-		while (true) {
-			System.out.println("이름(5글자이내)을 입력해주세요.");
-			String name = sc.nextLine();
-			while (true) {
-				System.out.println("입력하신 이름이" + name + "가 맞으시면 1번 다시 입력하시려면 0번을입력해주세요.");
-				createSelect = sc.nextLine();
-				if (createSelect.equals("1")) {
-					dto.setName(name);
-					break;
-				} else if (createSelect.equals("0")) {
-					break;
-				} else {
-					System.out.println("잘못입력하셨습니다.");
-				}
-			}
-			if (createSelect.equals("1")) {
-				break;
-			}
-		}
-		while (true) {
-			System.out.println("전화번호를 입력해주세요.");
-			String call = sc.nextLine();
-			while (true) {
-				System.out.println("입력하신 전화번호가" + call + "가 맞으시면 1번 다시 입력하시려면 0번을입력해주세요.");
-				createSelect = sc.nextLine();
-				if (createSelect.equals("1")) {
-					dto.setCall(call);
-					break;
-				} else if (createSelect.equals("0")) {
-					break;
-				} else {
-					System.out.println("잘못입력하셨습니다.");
-				}
-			}
-			if (createSelect.equals("1")) {
-				break;
-			}
-		}
+		dto.setPw(showMsgRtnStr("비밀번호(10글자이내)를 입력해주세요."));
+		dto.setName(showMsgRtnStr("이름(5글자이내)을 입력해주세요."));
+		dto.setCall(showMsgRtnStr("전화번호를 입력해주세요."));
 		while (true) {
 			try {
 				System.out.println("나이를 입력해주세요.");
@@ -247,6 +197,26 @@ public class DAO {
 											"입력하신 비밀번호가 : " + pw + " 가 맞으시면 1번을, 다시입력하시려면 2번을, 취소하시려면 0번을 입력해주세요.");
 									deletePw = sc.nextLine();
 									if (deletePw.equals("1")) {
+										try {
+											conn = getConn();
+											ps = conn.prepareStatement(
+													"DELETE FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_PW = ?");
+											ps.setString(1, id);
+											ps.setString(2, pw);
+											int result = ps.executeUpdate();
+											if (result >= 1) {
+												System.out.println("회원탈퇴 되었습니다.");
+												break;
+											} else {
+												System.out.println("아이디 또는 비밀번호가 틀렸습니다.");
+												break;
+											}
+										} catch (SQLException e) {
+											System.out.println("오류");
+											e.printStackTrace();
+										} finally {
+											dbClose();
+										}
 
 									} else if (deletePw.equals("2")) {
 										break;
@@ -311,7 +281,27 @@ public class DAO {
 											"입력하신 비밀번호가 : " + pw + " 가 맞으시면 1번을, 다시입력하시려면 2번을, 취소하시려면 0번을 입력해주세요.");
 									loginPw = sc.nextLine();
 									if (loginPw.equals("1")) {
-//										db 테이블에서 비교후 맞으면 탈출후 메뉴로 이동하고 아이디나 비밀번호가 틀릴경우 다시 입력받게
+										try {
+											conn = getConn();
+											ps = conn.prepareStatement(
+													"SELECT * FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_PW = ? ");
+											ps.setString(1, id);
+											ps.setString(2, pw);
+											rs = ps.executeQuery();
+											if (rs.next()) {
+												System.out.println("로그인 되었습니다.");
+												dto.setState("on");
+												break;
+											} else {
+												System.out.println("아이디 또는 비밀번호가 틀렸습니다.");
+												break;
+											}
+										} catch (SQLException e) {
+											System.out.println("오류");
+											e.printStackTrace();
+										} finally {
+											dbClose();
+										}
 									} else if (loginPw.equals("2")) {
 										break;
 									} else if (loginPw.equals("0")) {
@@ -320,7 +310,7 @@ public class DAO {
 										System.out.println("잘못 입력하셨습니다.");
 									}
 								}
-								if (loginPw.equals("0")) {
+								if (loginPw.equals("0") || loginPw.equals("1")) {
 									break;
 								}
 							}
@@ -335,6 +325,7 @@ public class DAO {
 						if (loginPw.equals("0")) {
 							break;
 						}
+						break;
 					}
 					if (loginId.equals("1") || loginId.equals("0")) {
 						break;
@@ -346,8 +337,9 @@ public class DAO {
 			} else {
 				System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
 			}
-
+			break;
 		}
+		menu();
 	}
 
 	public void logout() {
@@ -397,4 +389,97 @@ public class DAO {
 		}
 	}
 
+	public String showMsgRtnStr(String msg) {
+		String createSelect = null;
+		String rtnTemp = null;
+		while (true) {
+			System.out.println(msg);
+			rtnTemp = sc.nextLine();
+			while (true) {
+				System.out.println("입력하신 값 " + rtnTemp + " 가 맞으시면 1번 다시 입력하시려면 0번을입력해주세요.");
+				createSelect = sc.nextLine();
+				if (createSelect.equals("1")) {
+					break;
+				} else if (createSelect.equals("0")) {
+					break;
+				} else {
+					System.out.println("잘못입력하셨습니다.");
+				}
+			}
+			if (createSelect.equals("1")) {
+				break;
+			}
+		}
+		return rtnTemp;
+	}
+
+	public void Account() {
+		String id, pw, select, updateSelect;
+		try {
+			conn = getConn();
+			ps = conn.prepareStatement("SELECT * FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_PW = ?");
+			System.out.println("조회하실 id를 입력해주세요.");
+			id = sc.nextLine();
+			ps.setString(1, id);
+			System.out.println("조회하실 pw를 입력해주세요.");
+			pw = sc.nextLine();
+			ps.setString(2, pw);
+			rs = ps.executeQuery();
+			while (true) {
+				if (rs.next()) {
+					System.out.println("MEMBER_ID : " + rs.getString("MEMBER_ID"));
+					System.out.println("MEMBER_PW : " + rs.getString("MEMBER_PW"));
+					System.out.println("MEMBER_NAME : " + rs.getString("MEMBER_NAME"));
+					System.out.println("MEMBER_CALL : " + rs.getString("MEMBER_CALL"));
+					System.out.println("MEMBER_AGE : " + rs.getInt("MEMBER_AGE"));
+
+					System.out.println("회원정보 수정을 원하시면 1번을 취소하시려면 0번을 입력해주세요.");
+					select = sc.nextLine();
+					if (select.equals("1")) {
+						while (true) {
+							System.out.println("수정하실 부분을 선택해주세요.");
+							System.out.println("MEMBER_ID : " + rs.getString("MEMBER_ID"));
+							System.out.println("1번 MEMBER_PW : " + rs.getString("MEMBER_PW"));
+							System.out.println("2번 MEMBER_NAME : " + rs.getString("MEMBER_NAME"));
+							System.out.println("3번 MEMBER_CALL : " + rs.getString("MEMBER_CALL"));
+							System.out.println("4번 MEMBER_AGE : " + rs.getInt("MEMBER_AGE"));
+							System.out.println("0번 취소");
+							updateSelect = sc.nextLine();
+							if (updateSelect.equals("1")) {
+
+							} else if (updateSelect.equals("1")) {
+
+							} else if (updateSelect.equals("2")) {
+
+							} else if (updateSelect.equals("3")) {
+
+							} else if (updateSelect.equals("4")) {
+
+							} else if (updateSelect.equals("0")) {
+								System.out.println("취소합니다.");
+								break;
+							} else {
+								System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+							}
+						}
+					} else if (select.equals("0")) {
+						System.out.println("취소합니다");
+						break;
+					} else {
+						System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+						continue;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("오류");
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+	}
+
+	public void updateAccount() {
+		System.out.println("");
+	}
 }
