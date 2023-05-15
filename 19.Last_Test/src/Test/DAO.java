@@ -414,7 +414,8 @@ public class DAO {
 	}
 
 	public void Account() {
-		String id, pw, select, updateSelect;
+		String id, pw, select, updateSelect, updatePw, updateName, updateCall, updateAge;
+		String updateSelect2;
 		try {
 			conn = getConn();
 			ps = conn.prepareStatement("SELECT * FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_PW = ?");
@@ -446,8 +447,32 @@ public class DAO {
 							System.out.println("0번 취소");
 							updateSelect = sc.nextLine();
 							if (updateSelect.equals("1")) {
-
-							} else if (updateSelect.equals("1")) {
+								System.out.println("비밀번호 수정을 선택하셨습니다.");
+								while (true) {
+									System.out.println("수정하실 비밀번호를 입력해주세요.");
+									updatePw = sc.nextLine();
+									System.out.println(
+											"수정하실 비밀번호가 " + updatePw + "맞으시면 1번을 다시 입력하시려면 2번을 취소하시려면 0번을 입력해주세요.");
+									updateSelect2 = sc.nextLine();
+									if (updateSelect2.equals("1")) {
+										ps = conn.prepareStatement(
+												"UPDATE MEMBER SET MEMBER_PW = ? WHERE MEMBER_ID = ?");
+										ps.setString(1, updatePw);
+										ps.setString(2, id);
+										int result = ps.executeUpdate();
+										if (result >= 1) {
+											System.out.println("비밀번호 : " + updatePw + "로 변경되었습니다.");
+											break;
+										}
+									} else if (updateSelect2.equals("2")) {
+										continue;
+									} else if (updateSelect2.equals("0")) {
+										System.out.println("취소하셨습니다.");
+										break;
+									} else {
+										System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+									}
+								}
 
 							} else if (updateSelect.equals("2")) {
 
@@ -469,7 +494,11 @@ public class DAO {
 						System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
 						continue;
 					}
+				} else {
+					System.out.println("아이디나 비밀번호가 틀렸습니다.");
+					break;
 				}
+				break;
 			}
 		} catch (SQLException e) {
 			System.out.println("오류");
@@ -477,6 +506,7 @@ public class DAO {
 		} finally {
 			dbClose();
 		}
+		menu();
 	}
 
 	public void updateAccount() {
