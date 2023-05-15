@@ -55,7 +55,6 @@ public class DAO {
 				deleteAccount();
 				break;
 			} else if (select.equals("4")) {
-//				회원정보보기 및 수정
 				Account();
 			} else if (select.equals("5")) {
 //				게시판 메소드 만들기
@@ -71,6 +70,40 @@ public class DAO {
 //
 //				글추가 기능
 //				글제목+글내용+글번호가 추가되며 db 게시판 테이블에 추가되게
+//				오프상태이면 --> 로그인or취소
+//				온상태일때는 게시판 들어가면
+//				글번호 글제목
+//				1 글제목 ==> 글번호textNum를 입력받으면 글번호 글제목 글내용 / 수정(작성자가아니면 안보임) or 삭제 or 이전화면
+//				2 
+//				3
+//				4
+//				5
+//				6
+//				7
+//				8
+//				9
+//				10
+//				1p(1~10[2p가 있는경우에만 다음으로가기 끝으로가기]) 2p(Max(textNum)값을 받아서 ~) (11~20[이전페이지구현]) 끝으로가기 ...
+//				글쓰기 == > 
+//				취소 ==>
+				if (dto.getState().equals("off")) {
+					while (true) {
+						System.out.println("로그아웃 상태입니다. 로그인하시려면 1번 취소하시려면 0번을 입력해주세요.");
+						loginSelect = sc.nextLine();
+						if (loginSelect.equals("1")) {
+							login();
+							break;
+						} else if (loginSelect.equals("0")) {
+							System.out.println("취소합니다.");
+							break;
+						} else {
+							System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+						}
+					}
+				} else if (dto.getState().equals("on")) {
+					System.out.println("게시판에 접속합니다.");
+				}
+
 			} else if (select.equals("6")) {
 //				공공데이터 광주 날씨보기 추가
 			} else if (select.equals("0")) {
@@ -453,6 +486,10 @@ public class DAO {
 					select = sc.nextLine();
 					if (select.equals("1")) {
 						while (true) {
+							ps = conn.prepareStatement("SELECT * FROM MEMBER WHERE MEMBER_ID = ?");
+							ps.setString(1, id);
+							rs = ps.executeQuery();
+							rs.next();
 							System.out.println("수정하실 부분을 선택해주세요.");
 							System.out.println("MEMBER_ID : " + rs.getString("MEMBER_ID"));
 							System.out.println("1번 MEMBER_PW : " + rs.getString("MEMBER_PW"));
@@ -477,7 +514,6 @@ public class DAO {
 										int result = ps.executeUpdate();
 										if (result >= 1) {
 											System.out.println("비밀번호 : " + updatePw + " 로 변경되었습니다.");
-											conn = getConn();
 											break;
 										}
 									} else if (updateSelect2.equals("2")) {
