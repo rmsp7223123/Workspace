@@ -13,6 +13,7 @@ public class DAO {
 	Connection conn;
 	PreparedStatement ps;
 	ResultSet rs;
+	ResultSet rs1;
 
 	public void menu() {
 		String loginSelect;
@@ -57,7 +58,19 @@ public class DAO {
 //				회원정보보기 및 수정
 				Account();
 			} else if (select.equals("5")) {
-//				게시판
+//				게시판 메소드 만들기
+//				상태가 on 일때만 접속이 가능하고
+//				상태가 off일경우 로그인 메소드로 유도 or 이전화면으로 이동
+//
+//				게시판 접속시
+//				글번호 + 글 제목의 리스트가 보이게 하고(몇개까지 보이게 할건지
+//								  10개까지 한다면 페이지는 어떻게 만들건지)
+//
+//				글번호를 입력받아 글의 내용을 볼 수있게하고
+//				글 번호 + 글 제목 + 글 내용이 나오고 하단에 이전화면(게시글리스트)로 이동할지 메뉴로 이동할지
+//
+//				글추가 기능
+//				글제목+글내용+글번호가 추가되며 db 게시판 테이블에 추가되게
 			} else if (select.equals("6")) {
 //				공공데이터 광주 날씨보기 추가
 			} else if (select.equals("0")) {
@@ -225,10 +238,12 @@ public class DAO {
 									} else {
 										System.out.println("잘못 입력하셨습니다.");
 									}
+									break;
 								}
 								if (deletePw.equals("0")) {
 									break;
 								}
+								break;
 							}
 						} else if (deleteId.equals("2")) {
 							break;
@@ -241,10 +256,12 @@ public class DAO {
 						if (deletePw.equals("0")) {
 							break;
 						}
+						break;
 					}
 					if (deleteId.equals("1") || deleteId.equals("0")) {
 						break;
 					}
+					break;
 				}
 			} else if (deleteSelect.equals("0")) {
 				System.out.println("회원탈퇴를 취소합니다.");
@@ -270,7 +287,7 @@ public class DAO {
 					System.out.println("아이디를 입력해주세요.");
 					id = sc.nextLine();
 					while (true) {
-						System.out.println("입력하신 아이디가 " + id + "가 맞으시면 1번을, 다시 입력하시려면 2번을, 이전화면으로 이동하시려면 0번을 입력해주세요.");
+						System.out.println("입력하신 아이디가 " + id + " 가 맞으시면 1번을, 다시 입력하시려면 2번을, 이전화면으로 이동하시려면 0번을 입력해주세요.");
 						loginId = sc.nextLine();
 						if (loginId.equals("1")) {
 							while (true) {
@@ -339,7 +356,6 @@ public class DAO {
 			}
 			break;
 		}
-		menu();
 	}
 
 	public void logout() {
@@ -358,7 +374,6 @@ public class DAO {
 				System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
 			}
 		}
-		menu();
 	}
 
 	public Connection getConn() {
@@ -396,7 +411,7 @@ public class DAO {
 			System.out.println(msg);
 			rtnTemp = sc.nextLine();
 			while (true) {
-				System.out.println("입력하신 값 " + rtnTemp + " 가 맞으시면 1번 다시 입력하시려면 0번을입력해주세요.");
+				System.out.println("입력하신 값 " + rtnTemp + " (이)가 맞으시면 1번 다시 입력하시려면 0번을입력해주세요.");
 				createSelect = sc.nextLine();
 				if (createSelect.equals("1")) {
 					break;
@@ -452,7 +467,7 @@ public class DAO {
 									System.out.println("수정하실 비밀번호를 입력해주세요.");
 									updatePw = sc.nextLine();
 									System.out.println(
-											"수정하실 비밀번호가 " + updatePw + "맞으시면 1번을 다시 입력하시려면 2번을 취소하시려면 0번을 입력해주세요.");
+											"수정하실 비밀번호가 " + updatePw + " 맞으시면 1번을 다시 입력하시려면 2번을 취소하시려면 0번을 입력해주세요.");
 									updateSelect2 = sc.nextLine();
 									if (updateSelect2.equals("1")) {
 										ps = conn.prepareStatement(
@@ -461,7 +476,8 @@ public class DAO {
 										ps.setString(2, id);
 										int result = ps.executeUpdate();
 										if (result >= 1) {
-											System.out.println("비밀번호 : " + updatePw + "로 변경되었습니다.");
+											System.out.println("비밀번호 : " + updatePw + " 로 변경되었습니다.");
+											conn = getConn();
 											break;
 										}
 									} else if (updateSelect2.equals("2")) {
@@ -475,11 +491,86 @@ public class DAO {
 								}
 
 							} else if (updateSelect.equals("2")) {
-
+								System.out.println("이름 수정을 선택하셨습니다.");
+								while (true) {
+									System.out.println("수정하실 이름을 입력해주세요.");
+									updateName = sc.nextLine();
+									System.out.println(
+											"수정하실 이름이 " + updateName + " 맞으시면 1번을 다시 입력하시려면 2번을 취소하시려면 0번을 입력해주세요.");
+									updateSelect2 = sc.nextLine();
+									if (updateSelect2.equals("1")) {
+										ps = conn.prepareStatement(
+												"UPDATE MEMBER SET MEMBER_NAME = ? WHERE MEMBER_ID = ?");
+										ps.setString(1, updateName);
+										ps.setString(2, id);
+										int result = ps.executeUpdate();
+										if (result >= 1) {
+											System.out.println("이름 : " + updateName + " 로 변경되었습니다.");
+											break;
+										}
+									} else if (updateSelect2.equals("2")) {
+										continue;
+									} else if (updateSelect2.equals("0")) {
+										System.out.println("취소하셨습니다.");
+										break;
+									} else {
+										System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+									}
+								}
 							} else if (updateSelect.equals("3")) {
-
+								System.out.println("번호 수정을 선택하셨습니다.");
+								while (true) {
+									System.out.println("수정하실 번호를 입력해주세요.");
+									updateCall = sc.nextLine();
+									System.out.println(
+											"수정하실 번호가 " + updateCall + " 맞으시면 1번을 다시 입력하시려면 2번을 취소하시려면 0번을 입력해주세요.");
+									updateSelect2 = sc.nextLine();
+									if (updateSelect2.equals("1")) {
+										ps = conn.prepareStatement(
+												"UPDATE MEMBER SET MEMBER_CALL = ? WHERE MEMBER_ID = ?");
+										ps.setString(1, updateCall);
+										ps.setString(2, id);
+										int result = ps.executeUpdate();
+										if (result >= 1) {
+											System.out.println("번호 : " + updateCall + " 로 변경되었습니다.");
+											break;
+										}
+									} else if (updateSelect2.equals("2")) {
+										continue;
+									} else if (updateSelect2.equals("0")) {
+										System.out.println("취소하셨습니다.");
+										break;
+									} else {
+										System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+									}
+								}
 							} else if (updateSelect.equals("4")) {
-
+								System.out.println("나이 수정을 선택하셨습니다.");
+								while (true) {
+									System.out.println("수정하실 나이를 입력해주세요.");
+									updateAge = sc.nextLine();
+									System.out.println(
+											"수정하실 나이가 " + updateAge + " 맞으시면 1번을 다시 입력하시려면 2번을 취소하시려면 0번을 입력해주세요.");
+									updateSelect2 = sc.nextLine();
+									if (updateSelect2.equals("1")) {
+										ps = conn.prepareStatement(
+												"UPDATE MEMBER SET MEMBER_AGE = ? WHERE MEMBER_ID = ?");
+										ps.setString(1, updateAge);
+										ps.setString(2, id);
+										int result = ps.executeUpdate();
+										if (result >= 1) {
+											System.out.println("나이 : " + updateAge + " 로 변경되었습니다.");
+											break;
+										}
+									} else if (updateSelect2.equals("2")) {
+										continue;
+									} else if (updateSelect2.equals("0")) {
+										System.out.println("취소하셨습니다.");
+										break;
+									} else {
+										System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+									}
+								}
 							} else if (updateSelect.equals("0")) {
 								System.out.println("취소합니다.");
 								break;
@@ -506,10 +597,6 @@ public class DAO {
 		} finally {
 			dbClose();
 		}
-		menu();
 	}
 
-	public void updateAccount() {
-		System.out.println("");
-	}
 }

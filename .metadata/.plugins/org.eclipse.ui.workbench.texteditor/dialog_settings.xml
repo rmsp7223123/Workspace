@@ -6,14 +6,16 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Func"/>
+		<item key="selection" value="delete"/>
 		<list key="findhistory">
+			<item value="delete"/>
+			<item value="setpw"/>
+			<item value="set"/>
 			<item value="list"/>
 			<item value="Funclist"/>
 			<item value="setFunc"/>
 			<item value="func"/>
 			<item value="return"/>
-			<item value="set"/>
 			<item value="현재"/>
 			<item value="dto"/>
 			<item value="display"/>
@@ -22,8 +24,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="485"/>
-		<item key="DIALOG_Y_ORIGIN" value="263"/>
+		<item key="DIALOG_X_ORIGIN" value="1301"/>
+		<item key="DIALOG_Y_ORIGIN" value="223"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
