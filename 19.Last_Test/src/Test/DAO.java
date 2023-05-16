@@ -57,35 +57,6 @@ public class DAO {
 			} else if (select.equals("4")) {
 				Account();
 			} else if (select.equals("5")) {
-//				게시판 메소드 만들기
-//				상태가 on 일때만 접속이 가능하고
-//				상태가 off일경우 로그인 메소드로 유도 or 이전화면으로 이동
-//
-//				게시판 접속시
-//				글번호 + 글 제목의 리스트가 보이게 하고(몇개까지 보이게 할건지
-//								  10개까지 한다면 페이지는 어떻게 만들건지)
-//
-//				글번호를 입력받아 글의 내용을 볼 수있게하고
-//				글 번호 + 글 제목 + 글 내용이 나오고 하단에 이전화면(게시글리스트)로 이동할지 메뉴로 이동할지
-//
-//				글추가 기능
-//				글제목+글내용+글번호가 추가되며 db 게시판 테이블에 추가되게
-//				오프상태이면 --> 로그인or취소
-//				온상태일때는 게시판 들어가면
-//				글번호 글제목
-//				1 글제목 ==> 글번호textNum를 입력받으면 글번호 글제목 글내용 / 수정(작성자가아니면 안보임) or 삭제 or 이전화면
-//				2 
-//				3
-//				4
-//				5
-//				6
-//				7
-//				8
-//				9
-//				10
-//				1p(1~10[2p가 있는경우에만 다음으로가기 끝으로가기]) 2p(Max(textNum)값을 받아서 ~) (11~20[이전페이지구현]) 끝으로가기 ...
-//				글쓰기 == > 
-//				취소 ==>
 				if (dto.getState().equals("off")) {
 					while (true) {
 						System.out.println("로그아웃 상태입니다. 로그인하시려면 1번 취소하시려면 0번을 입력해주세요.");
@@ -101,7 +72,7 @@ public class DAO {
 						}
 					}
 				} else if (dto.getState().equals("on")) {
-					System.out.println("게시판에 접속합니다.");
+					board();
 				}
 
 			} else if (select.equals("6")) {
@@ -341,6 +312,7 @@ public class DAO {
 											if (rs.next()) {
 												System.out.println("로그인 되었습니다.");
 												dto.setState("on");
+												dto.setId(id);
 												break;
 											} else {
 												System.out.println("아이디 또는 비밀번호가 틀렸습니다.");
@@ -358,6 +330,7 @@ public class DAO {
 										break;
 									} else {
 										System.out.println("잘못 입력하셨습니다.");
+										continue;
 									}
 								}
 								if (loginPw.equals("0") || loginPw.equals("1")) {
@@ -371,6 +344,7 @@ public class DAO {
 							break;
 						} else {
 							System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+							continue;
 						}
 						if (loginPw.equals("0")) {
 							break;
@@ -386,6 +360,7 @@ public class DAO {
 				break;
 			} else {
 				System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+				continue;
 			}
 			break;
 		}
@@ -399,6 +374,8 @@ public class DAO {
 			if (logoutSelect.equals("1")) {
 				dto.setState("off");
 				System.out.println("로그아웃 되었습니다.");
+				dto.setId(null);
+				dto.setPw(null);
 				break;
 			} else if (logoutSelect.equals("0")) {
 				System.out.println("취소하셨습니다.");
@@ -635,4 +612,145 @@ public class DAO {
 		}
 	}
 
+	public void board() {
+		String viewSelect;
+		System.out.println("게시판에 접속하셨습니다.");
+		try {
+
+			while (true) {
+//					System.out.println("글번호\t글제목");  글 리스트 보여주는 
+//					System.out.print("  " + rs.getString("TEXT_NUMBER") + "\t");
+//					System.out.println(rs.getString("TITLE"));
+				System.out.println("글읽기 : 1");
+				System.out.println("글쓰기 : 2");
+				System.out.println("글수정 : 3");
+				System.out.println("글삭제 : 4");
+				System.out.println("취소 : 0");
+				viewSelect = sc.nextLine();
+				if (viewSelect.equals("2")) {
+					boardWrite();
+				} else if (viewSelect.equals("1")) {
+					readBoard();
+				} else if (viewSelect.equals("3")) {
+					// 글수정 추가
+				} else if (viewSelect.equals("4")) {
+					// 글삭제 추가
+				} else if (viewSelect.equals("0")) {
+					System.out.println("취소하셨습니다.");
+					break;
+				} else {
+					System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+					continue;
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("오류");
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+	}
+
+	public void boardWrite() {
+		String writeSelect, writeTitle, writeContent, titleSelect, contentSelect;
+		System.out.println("글쓰기에 접속하셨습니다. ");
+		while (true) {
+			System.out.println("글을 쓰시려면 1번을 취소하시려면 0번을 입력해주세요.");
+			writeSelect = sc.nextLine();
+			if (writeSelect.equals("1")) {
+				while (true) {
+					System.out.println("작성하실 글의 제목을 입력해주세요.");
+					writeTitle = sc.nextLine();
+					System.out
+							.println("작성하실 글의 제목이 : " + writeTitle + " 이(가) 맞으시면 1번을 다시입력하시려면 2번을 취소하시려면 0번을 입력해주세요.");
+					titleSelect = sc.nextLine();
+					if (titleSelect.equals("1")) {
+						while (true) {
+							System.out.println("작성하실 글의 내용을 입력해주세요");
+							writeContent = sc.nextLine();
+							System.out.println("글의 내용이 입력되었습니다.");
+							System.out.println("글을 올리시려면 1번을 글의 내용을 다시입력하시려면 2번을 취소하시려면 0번을 입력해주세요.");
+							contentSelect = sc.nextLine();
+							if (contentSelect.equals("1")) {
+								try {
+									conn = getConn();
+									ps = conn.prepareStatement(
+											"INSERT INTO BOARD2 (TEXT_NUMBER, TITLE, CONTENTS, MEMBER_ID, WRITE_DATE) VALUES ((SELECT MAX(TEXT_NUMBER)+1 FROM BOARD2), ?, ?, ?, sysdate)");
+									ps.setString(1, writeTitle);
+									ps.setString(2, writeContent);
+									ps.setString(3, dto.getId());
+									ps.executeUpdate();
+								} catch (SQLException e) {
+									System.out.println("오류");
+									e.printStackTrace();
+								} finally {
+									dbClose();
+								}
+								System.out.println("글이 작성되었습니다.");
+								break;
+							} else if (contentSelect.equals("2")) {
+								continue;
+							} else if (contentSelect.equals("0")) {
+								break;
+							} else {
+								System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+								continue;
+							}
+
+						}
+					} else if (titleSelect.equals("2")) {
+						continue;
+					} else if (titleSelect.equals("0")) {
+						System.out.println("취소하셨습니다.");
+						break;
+					} else {
+						System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+						continue;
+					}
+					break;
+				}
+
+			} else if (writeSelect.equals("0")) {
+				break;
+			} else {
+				System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+			}
+		}
+	}
+
+	public void readBoard() {
+		int readSelect;
+		System.out.println("글읽기에 접속하셨습니다.");
+		try {
+			conn = getConn();
+			ps = conn.prepareStatement("SELECT * FROM BOARD2");
+			rs = ps.executeQuery();
+			System.out.println("글번호\t글제목");
+			while (rs.next()) {
+				System.out.print("  " + rs.getInt("TEXT_NUMBER") + "\t");
+				System.out.println(rs.getString("TITLE"));
+			}
+			System.out.println("읽으실 글의 번호를 입력해주세요.");
+			System.out.println("취소 : 0번");
+			while (true) {
+				try {
+					readSelect = Integer.parseInt(sc.nextLine());
+					if (readSelect == 0) {
+						System.out.println("취소합니다.");
+						break;
+					} else if (readSelect > 0) {
+						break;
+					} else {
+						System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+						continue;
+					}
+				} catch (Exception e) {
+					System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
