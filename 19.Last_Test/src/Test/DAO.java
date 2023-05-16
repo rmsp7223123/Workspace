@@ -632,7 +632,7 @@ public class DAO {
 				} else if (viewSelect.equals("1")) {
 					readBoard();
 				} else if (viewSelect.equals("3")) {
-					// 글수정 추가
+					updateBoard();
 				} else if (viewSelect.equals("4")) {
 					// 글삭제 추가
 				} else if (viewSelect.equals("0")) {
@@ -724,30 +724,124 @@ public class DAO {
 		System.out.println("글읽기에 접속하셨습니다.");
 		try {
 			conn = getConn();
-			ps = conn.prepareStatement("SELECT * FROM BOARD2");
+			ps = conn.prepareStatement("SELECT * FROM BOARD2 ORDER BY 1");
 			rs = ps.executeQuery();
-			System.out.println("글번호\t글제목");
+			System.out.println("글번호\t\t\t글제목\t\t\t작성자");
 			while (rs.next()) {
-				System.out.print("  " + rs.getInt("TEXT_NUMBER") + "\t");
-				System.out.println(rs.getString("TITLE"));
+				System.out.print("  " + rs.getInt("TEXT_NUMBER") + "\t\t\t" + rs.getString("TITLE") + "\t\t\t");
+				System.out.println(rs.getString("MEMBER_ID"));
 			}
 			System.out.println("읽으실 글의 번호를 입력해주세요.");
+//			int minTextNum = rs.getInt("SELECT MIN(TEXT_NUMBER)+1 FROM BOARD2");
+//			int maxTextNum = rs.getInt("SELECT MAX(TEXT_NUMBER)+1 FROM BOARD2");
 			System.out.println("취소 : 0번");
 			while (true) {
+				ps = conn.prepareStatement("SELECT MAX(TEXT_NUMBER) FROM BOARD2");
+				rs = ps.executeQuery();
+				rs.next();
 				try {
-					readSelect = Integer.parseInt(sc.nextLine());
-					if (readSelect == 0) {
-						System.out.println("취소합니다.");
-						break;
-					} else if (readSelect > 0) {
-						break;
-					} else {
-						System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
-						continue;
+					while (true) {
+						readSelect = Integer.parseInt(sc.nextLine());
+						if (readSelect == 0) {
+							System.out.println("취소합니다.");
+							break;
+						} else {
+							ps = conn.prepareStatement("SELECT * FROM BOARD2 WHERE TEXT_NUMBER = ?");
+							ps.setInt(1, readSelect);
+							rs = ps.executeQuery();
+							if (rs.next()) {
+								System.out.println("글번호\t글제목\t작성자");
+								System.out.print(
+										"  " + rs.getInt("TEXT_NUMBER") + "\t\t\t" + rs.getString("TITLE") + "\t\t\t");
+								System.out.println(rs.getString("MEMBER_ID"));
+								System.out.println("글내용 : " + rs.getString("CONTENTS"));
+								break;
+							} else {
+								System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+								continue;
+							}
+						}
 					}
 				} catch (Exception e) {
 					System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
 				}
+				break;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void updateBoard() {
+		int updateSelect;
+		String updateSelect2, updateTitle, updateContent;
+		System.out.println("글수정에 접속하셨습니다.");
+		try {
+			while (true) {
+				conn = getConn();
+				ps = conn.prepareStatement("SELECT * FROM BOARD2 ORDER BY 1");
+				rs = ps.executeQuery();
+				rs.next();
+				System.out.println("수정하실 글의 번호를 입력해주세요.");
+				System.out.println("취소 : 0번");
+				System.out.println("글번호\t\t\t글제목\t\t\t작성자");
+				System.out.print("  " + rs.getInt("TEXT_NUMBER") + "\t\t\t" + rs.getString("TITLE") + "\t\t\t");
+				System.out.println(rs.getString("MEMBER_ID"));
+				updateSelect = Integer.parseInt(sc.nextLine());
+				try {
+					if (updateSelect == 0) {
+						System.out.println("취소합니다.");
+						break;
+					} else {
+						ps = conn.prepareStatement("SELECT * FROM BOARD2 WHERE TEXT_NUMBER = ?");
+						ps.setInt(1, updateSelect);
+						rs = ps.executeQuery();
+						if (rs.next()) {
+							System.out.println("글번호\t글제목\t작성자");
+							System.out.print(
+									"  " + rs.getInt("TEXT_NUMBER") + "\t\t\t" + rs.getString("TITLE") + "\t\t\t");
+							System.out.println(rs.getString("MEMBER_ID"));
+							System.out.println("글내용 : " + rs.getString("CONTENTS"));
+							while (true) {
+								System.out.println("수정하실곳을 선택해주세요.");
+								System.out.println("1번 : 글제목");
+								System.out.println("2번 : 글내용");
+								System.out.println("0번 : 취소");
+								updateSelect2 = sc.nextLine();
+								if (updateSelect2.equals("1")) {
+									System.out.println("글제목 수정을 선택하셨습니다.");
+									System.out.println("수정하실 글 제목을 입력해주세요.");
+									updateTitle = sc.nextLine();
+									System.out.println("글제목이 수정되었습니다.");
+									ps = conn.prepareStatement("UPDATE BOARD2 SET TITLE = ? WHERE TEXT_NUMBER = ?");
+									ps.setString(1, updateTitle);
+									ps.setInt(2, 0000);
+//									글번호(primary key)를 기준으로 변경되게
+									ps.executeUpdate();
+									continue;
+								} else if (updateSelect2.equals("2")) {
+									System.out.println("글내용 수정을 선택하셨습니다.");
+									System.out.println("수정하실 글 내용을 입력해주세요.");
+									updateContent = sc.nextLine();
+									System.out.println("글내용이 수정되었습니다.");
+									continue;
+								} else if (updateSelect2.equals("0")) {
+									System.out.println("취소합니다.");
+									break;
+								} else {
+									System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+									continue;
+								}
+							}
+						} else {
+							System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+							continue;
+						}
+					}
+				} catch (Exception e) {
+					System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+				}
+				break;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
