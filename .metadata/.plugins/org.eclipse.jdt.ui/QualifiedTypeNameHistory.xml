@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.io.OutputStreamWriter"/>
-    <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
-    <fullyQualifiedTypeName name="pack02.outputstream.Ex01_File"/>
-    <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="java.io.Reader"/>
-    <fullyQualifiedTypeName name="java.io.FileReader"/>
-    <fullyQualifiedTypeName name="java.io.IOException"/>
-    <fullyQualifiedTypeName name="java.io.FileWriter"/>
-    <fullyQualifiedTypeName name="java.io.Writer"/>
-    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
     <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
@@ -48,7 +38,6 @@
     <fullyQualifiedTypeName name="com.google.inject.spi.Message"/>
     <fullyQualifiedTypeName name="net.nurigo.java_sdk.api.Message"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
     <fullyQualifiedTypeName name="org.apache.commons.mail.SimpleEmail"/>
     <fullyQualifiedTypeName name="pack05.email.SendEmail"/>
     <fullyQualifiedTypeName name="org.apache.commons.mail.MultiPartEmail"/>
@@ -60,4 +49,15 @@
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="javax.xml.crypto.Data"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.util.Calendar"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="org.jsoup.Jsoup"/>
+    <fullyQualifiedTypeName name="oracle.sql.json.OracleJsonParser"/>
+    <fullyQualifiedTypeName name="oracle.jdbc.driver.json.parser.JsonParserImpl"/>
+    <fullyQualifiedTypeName name="org.json.simple.parser.JSONParser"/>
+    <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
+    <fullyQualifiedTypeName name="org.json.simple.JSONArray"/>
 </qualifiedTypeNameHistroy>
