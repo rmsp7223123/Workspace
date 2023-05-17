@@ -1,11 +1,21 @@
 package Test;
 
+import java.io.IOException;
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.jsoup.Jsoup;
 
 public class DAO {
 	Scanner sc = new Scanner(System.in);
@@ -25,7 +35,7 @@ public class DAO {
 			System.out.println("3번 회원탈퇴");
 			System.out.println("4번 회원정보보기 및 수정");
 			System.out.println("5번 게시판");
-			System.out.println("5번 날씨보기");
+			System.out.println("6번 날씨보기");
 			String select = sc.nextLine();
 			if (select.equals("1")) {
 //				로그인 상태시 로그아웃메소드로, 로그아웃 상태시 로그인 메소드로 이동하게
@@ -76,7 +86,7 @@ public class DAO {
 				}
 
 			} else if (select.equals("6")) {
-//				공공데이터 광주 날씨보기 추가
+				weather();
 			} else if (select.equals("0")) {
 				System.out.println("취소합니다.");
 				break;
@@ -84,7 +94,6 @@ public class DAO {
 				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 			}
 		}
-
 	}
 
 	public void createAccount() {
@@ -634,7 +643,7 @@ public class DAO {
 				} else if (viewSelect.equals("3")) {
 					updateBoard();
 				} else if (viewSelect.equals("4")) {
-					// 글삭제 추가
+					deleteBoard();
 				} else if (viewSelect.equals("0")) {
 					System.out.println("취소하셨습니다.");
 					break;
@@ -781,12 +790,14 @@ public class DAO {
 				conn = getConn();
 				ps = conn.prepareStatement("SELECT * FROM BOARD2 ORDER BY 1");
 				rs = ps.executeQuery();
-				rs.next();
+
 				System.out.println("수정하실 글의 번호를 입력해주세요.");
 				System.out.println("취소 : 0번");
 				System.out.println("글번호\t\t\t글제목\t\t\t작성자");
-				System.out.print("  " + rs.getInt("TEXT_NUMBER") + "\t\t\t" + rs.getString("TITLE") + "\t\t\t");
-				System.out.println(rs.getString("MEMBER_ID"));
+				while (rs.next()) {
+					System.out.print("  " + rs.getInt("TEXT_NUMBER") + "\t\t\t" + rs.getString("TITLE") + "\t\t\t");
+					System.out.println(rs.getString("MEMBER_ID"));
+				}
 				updateSelect = Integer.parseInt(sc.nextLine());
 				try {
 					if (updateSelect == 0) {
@@ -812,17 +823,20 @@ public class DAO {
 									System.out.println("글제목 수정을 선택하셨습니다.");
 									System.out.println("수정하실 글 제목을 입력해주세요.");
 									updateTitle = sc.nextLine();
-									System.out.println("글제목이 수정되었습니다.");
 									ps = conn.prepareStatement("UPDATE BOARD2 SET TITLE = ? WHERE TEXT_NUMBER = ?");
 									ps.setString(1, updateTitle);
-									ps.setInt(2, 0000);
-//									글번호(primary key)를 기준으로 변경되게
+									ps.setInt(2, updateSelect);
 									ps.executeUpdate();
+									System.out.println("글제목이 수정되었습니다.");
 									continue;
 								} else if (updateSelect2.equals("2")) {
 									System.out.println("글내용 수정을 선택하셨습니다.");
 									System.out.println("수정하실 글 내용을 입력해주세요.");
 									updateContent = sc.nextLine();
+									ps = conn.prepareStatement("UPDATE BOARD2 SET TITLE = ? WHERE TEXT_NUMBER = ?");
+									ps.setString(1, updateContent);
+									ps.setInt(2, updateSelect);
+									ps.executeUpdate();
 									System.out.println("글내용이 수정되었습니다.");
 									continue;
 								} else if (updateSelect2.equals("0")) {
@@ -844,6 +858,130 @@ public class DAO {
 				break;
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteBoard() {
+		int deleteSelect;
+		String deleteSelect2, deleteTitle, deleteContent;
+		System.out.println("글삭제에 접속하셨습니다.");
+		try {
+			while (true) {
+				conn = getConn();
+				ps = conn.prepareStatement("SELECT * FROM BOARD2 ORDER BY 1");
+				rs = ps.executeQuery();
+
+				System.out.println("삭제하실 글의 번호를 입력해주세요.");
+				System.out.println("취소 : 0번");
+				System.out.println("글번호\t\t\t글제목\t\t\t작성자");
+				while (rs.next()) {
+					System.out.print("  " + rs.getInt("TEXT_NUMBER") + "\t\t\t" + rs.getString("TITLE") + "\t\t\t");
+					System.out.println(rs.getString("MEMBER_ID"));
+				}
+				deleteSelect = Integer.parseInt(sc.nextLine());
+				try {
+					if (deleteSelect == 0) {
+						System.out.println("취소합니다.");
+						break;
+					} else {
+						ps = conn.prepareStatement("SELECT * FROM BOARD2 WHERE TEXT_NUMBER = ?");
+						ps.setInt(1, deleteSelect);
+						rs = ps.executeQuery();
+						if (rs.next()) {
+							System.out.println("글번호\t글제목\t작성자");
+							System.out.print(
+									"  " + rs.getInt("TEXT_NUMBER") + "\t\t\t" + rs.getString("TITLE") + "\t\t\t");
+							System.out.println(rs.getString("MEMBER_ID"));
+							System.out.println("글내용 : " + rs.getString("CONTENTS"));
+							if (rs.getString("member_id").equals(dto.getId())) {
+								ps = conn
+										.prepareStatement("DELETE FROM BOARD2 WHERE TEXT_NUMBER = ? AND MEMBER_ID = ?");
+								ps.setInt(1, deleteSelect);
+								ps.setString(2, dto.getId());
+								ps.executeUpdate();
+								System.out.println("삭제되었습니다.");
+							} else {
+								System.out.println("게시한 글의 아이디가 달라 삭제가 불가능합니다.");
+							}
+
+						} else {
+							System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+							continue;
+						}
+					}
+				} catch (Exception e) {
+					System.out.println("잘못입력하셨습니다. 다시입력해주세요.");
+				}
+				break;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void weather() {
+		String[][] tempCategory = { { "T1H", "기온" }, { "RN1", "1시간 내 강수량" }, { "REH", "습도" }, { "PTY", "강수형태" },
+				{ "VEC", "풍향" }, { "WSD", "풍속" } };
+
+		String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?";
+		String doc = null;
+		String cty; // category
+		// T1H(기온 ℃), RN1(1시간 강수량 mm), REH(습도 %), PTY(강수형태), VEC(풍향 deg), WSD(풍속 m/s)
+		// 강수형태 수치에 대해서 -> 의미없음(0), 비(1), 비/눈(2), 눈(3), 소나기(4), 빗방울(5), 빗방울/눈날림(6),
+		// 눈날림(7)
+
+		Date date = new Date();
+		SimpleDateFormat sdformat = new SimpleDateFormat("yyyyMMdd");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		String today = sdformat.format(cal.getTime()); // 날짜
+
+		cal.add(Calendar.HOUR, -1); // 현 시간부터 1시간 전
+		SimpleDateFormat sdtime = new SimpleDateFormat("HH" + "00");
+		String hour = sdtime.format(cal.getTime());
+
+		SimpleDateFormat sddate = new SimpleDateFormat("yyyy-MM-dd"); // 날짜 형식 바꾸기
+		cal.setTime(date);
+		String formatdate = sddate.format(cal.getTime());
+
+		cal.add(Calendar.HOUR, -1);
+		SimpleDateFormat sdhour = new SimpleDateFormat("HH시"); // 시간 형식 바꾸기
+		String formathour = sdhour.format(cal.getTime());
+
+		try {
+			doc = Jsoup.connect(url).data("pageNo", "1").data("numOfRows", "10").data("dataType", "Json")
+					.data("base_date", today).data("base_time", hour).data("nx", "58").data("ny", "74")
+					.data("serviceKey",
+							"kmc0ZV1P4EDjawY1Lf6lvCWeZXhgexI8O3A59ZNccISKWGOaO4IIUn+TAO8dYHAhjcPOkkGwsioB7rC1UgPOCQ==")
+					.timeout(1000 * 40).userAgent("chrome").ignoreContentType(true).execute().body();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JSONParser parser = new JSONParser(); // 문자열 -> JsonObject 형태로 바꿔줌
+		try {
+			JSONObject jsonObj = (JSONObject) parser.parse(doc);
+			jsonObj = (JSONObject) jsonObj.get("response");
+			jsonObj = (JSONObject) jsonObj.get("body");
+			jsonObj = (JSONObject) jsonObj.get("items");
+			JSONArray array = (JSONArray) jsonObj.get("item");
+			System.out.println("날짜:" + formatdate + " | " + "예보시간:" + formathour + " | 위치:광주광역시");
+			System.out.println("========================================");
+			for (int i = 0; i < array.size(); i++) {
+				JSONObject tempObj = (JSONObject) array.get(i);
+				// System.out.println("카테고리 obj"+tempObj.get("category"));
+				for (int j = 0; j < tempCategory.length; j++) {
+					// System.out.println("배열"+tempCategory[j][0]);
+					if (tempObj.get("category").equals(tempCategory[j][0])) {
+						System.out.println(tempCategory[j][1] + ": " + tempObj.get("obsrValue"));
+
+					}
+				}
+
+			}
+		} catch (Exception e) {
+			// String json이 key와 value를 가진 데이터가 아닌 그냥 일반 문자열이라면 오류가 발생.
 			e.printStackTrace();
 		}
 	}

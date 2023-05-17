@@ -60,7 +60,6 @@ public class EmpDAO {// 실제 데이터베이스와 연동하여 요구사항 �
 				EmpDTO dto = new EmpDTO(rs.getInt("EMPLOYEE_ID"), rs.getString("name"), rs.getString("email"));
 				list.add(dto);
 				System.out.println(dto.getEmployee_id() + " " + dto.getName() + " " + dto.getEmail());
-
 			}
 			System.out.println("총 인원 : " + list.size() + "명");
 		} catch (Exception e) {
